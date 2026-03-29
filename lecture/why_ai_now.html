@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>なぜ「今」AIなのか — AIレクチャー 第1回</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --border: #334155;
+    --text: #e2e8f0;
+    --text2: #94a3b8;
+    --blue: #3b82f6;
+    --green: #10b981;
+    --yellow: #f59e0b;
+    --red: #ef4444;
+    --purple: #a855f7;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  .slide {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 32px;
+    border-bottom: 2px solid var(--border);
+    position: relative;
+  }
+
+  .slide-number {
+    position: absolute;
+    top: 20px;
+    right: 32px;
+    font-size: 13px;
+    color: var(--text2);
+  }
+
+  h1 {
+    font-size: 42px;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 16px;
+    letter-spacing: -1px;
+  }
+  h1 .accent { color: var(--yellow); }
+  h1 .accent-blue { color: var(--blue); }
+
+  h2 {
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 32px;
+    color: #fff;
+  }
+
+  .subtitle {
+    font-size: 18px;
+    color: var(--text2);
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .tag {
+    display: inline-block;
+    background: rgba(59,130,246,0.15);
+    border: 1px solid var(--blue);
+    color: var(--blue);
+    font-size: 13px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+  }
+
+  /* ===== SLIDE 1: TITLE ===== */
+  .title-icon {
+    font-size: 64px;
+    margin-bottom: 24px;
+  }
+  .title-meta {
+    margin-top: 32px;
+    font-size: 14px;
+    color: var(--text2);
+    text-align: center;
+  }
+
+  /* ===== SLIDE 2: FORMULA ===== */
+  .formula-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    max-width: 900px;
+    width: 100%;
+  }
+  .formula-card {
+    background: var(--card);
+    border: 2px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .formula-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+  }
+  .formula-card.card-elite::before { background: var(--blue); }
+  .formula-card.card-normal::before { background: var(--green); }
+
+  .formula-label {
+    font-size: 14px;
+    color: var(--text2);
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+  .formula-equation {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .formula-equation .op { color: var(--text2); font-size: 20px; }
+  .formula-equation .ai-badge {
+    background: linear-gradient(135deg, var(--purple), var(--blue));
+    padding: 4px 14px;
+    border-radius: 8px;
+    font-size: 18px;
+  }
+  .formula-result {
+    font-size: 36px;
+    font-weight: 800;
+    margin: 16px 0 12px;
+  }
+  .formula-result.result-infinity { color: var(--blue); }
+  .formula-result.result-excellent { color: var(--green); }
+  .formula-example {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.8;
+  }
+
+  /* ===== SLIDE 3: BAR CHART ===== */
+  .bar-chart {
+    max-width: 800px;
+    width: 100%;
+  }
+  .bar-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 16px;
+  }
+  .bar-label {
+    width: 160px;
+    text-align: right;
+    font-size: 14px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .bar-container {
+    flex: 1;
+    height: 48px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    padding-left: 16px;
+    font-weight: 700;
+    font-size: 14px;
+    transition: width 1.5s ease;
+  }
+  .bar-fill.bar-before {
+    background: rgba(148,163,184,0.3);
+    color: var(--text2);
+  }
+  .bar-fill.bar-after-elite {
+    background: linear-gradient(90deg, var(--blue), var(--purple));
+    color: #fff;
+  }
+  .bar-fill.bar-after-normal {
+    background: linear-gradient(90deg, var(--green), var(--blue));
+    color: #fff;
+  }
+  .bar-group-label {
+    font-size: 12px;
+    color: var(--text2);
+    margin-bottom: 4px;
+    margin-left: 176px;
+  }
+  .bar-separator {
+    border: none;
+    border-top: 1px dashed var(--border);
+    margin: 16px 0;
+  }
+  .arrow-label {
+    text-align: center;
+    font-size: 24px;
+    color: var(--yellow);
+    margin: 8px 0;
+  }
+
+  /* ===== SLIDE 4: COMPOUND INTEREST ===== */
+  .timeline {
+    max-width: 800px;
+    width: 100%;
+    position: relative;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--border);
+    transform: translateX(-50%);
+  }
+  .timeline-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 32px;
+    position: relative;
+  }
+  .timeline-item:nth-child(odd) { flex-direction: row; }
+  .timeline-item:nth-child(even) { flex-direction: row-reverse; }
+  .timeline-dot {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    z-index: 2;
+  }
+  .timeline-card {
+    width: 45%;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .timeline-card h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .timeline-card p {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.6;
+  }
+  .timeline-card .highlight {
+    color: var(--yellow);
+    font-weight: 600;
+  }
+
+  /* ===== SLIDE 5: GAP ===== */
+  .gap-visual {
+    max-width: 700px;
+    width: 100%;
+    text-align: center;
+  }
+  .gap-lanes {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin: 32px 0;
+  }
+  .gap-lane {
+    text-align: center;
+    width: 200px;
+  }
+  .gap-lane-label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .gap-block {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    position: relative;
+  }
+  .gap-block .year { font-size: 12px; color: var(--text2); margin-bottom: 4px; }
+  .gap-block .level { font-size: 18px; font-weight: 700; }
+  .gap-arrow {
+    font-size: 24px;
+    color: var(--text2);
+    margin: 4px 0;
+  }
+  .gap-block.now { border-color: var(--yellow); box-shadow: 0 0 12px rgba(245,158,11,0.2); }
+  .gap-block.future { border-color: var(--blue); }
+  .gap-block.late { border-color: var(--red); opacity: 0.7; }
+  .gap-diff {
+    position: absolute;
+    right: -40px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 28px;
+    font-weight: 800;
+  }
+
+  /* ===== SLIDE 6: MESSAGE ===== */
+  .message-box {
+    max-width: 700px;
+    background: var(--card);
+    border: 2px solid var(--yellow);
+    border-radius: 16px;
+    padding: 48px;
+    text-align: center;
+    box-shadow: 0 0 40px rgba(245,158,11,0.1);
+  }
+  .message-box .icon { font-size: 48px; margin-bottom: 20px; }
+  .message-box .main-msg {
+    font-size: 28px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 16px;
+    line-height: 1.4;
+  }
+  .message-box .sub-msg {
+    font-size: 16px;
+    color: var(--text2);
+    line-height: 1.8;
+  }
+  .message-box .sub-msg strong {
+    color: var(--yellow);
+  }
+
+  /* ===== SLIDE 7: FOR ACCOUNTING ===== */
+  .use-cases {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 900px;
+    width: 100%;
+  }
+  .use-case {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+  }
+  .use-case .uc-icon { font-size: 36px; margin-bottom: 12px; }
+  .use-case h3 { font-size: 15px; font-weight: 700; margin-bottom: 8px; color: #fff; }
+  .use-case .before { font-size: 12px; color: var(--red); margin-bottom: 4px; }
+  .use-case .after { font-size: 12px; color: var(--green); }
+
+  /* NAV */
+  .nav {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    gap: 8px;
+    z-index: 100;
+  }
+  .nav button {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .nav button:hover { background: var(--border); }
+
+  /* MOBILE */
+  @media screen and (max-width: 768px) {
+    .slide { padding: 32px 16px; min-height: auto; padding-top: 60px; padding-bottom: 60px; }
+    h1 { font-size: 28px; }
+    h2 { font-size: 22px; }
+    .formula-grid { grid-template-columns: 1fr; gap: 16px; }
+    .formula-equation { font-size: 18px; }
+    .formula-result { font-size: 28px; }
+    .bar-label { width: 100px; font-size: 12px; }
+    .bar-group-label { margin-left: 116px; }
+    .timeline::before { left: 20px; }
+    .timeline-dot { left: 20px; }
+    .timeline-item, .timeline-item:nth-child(even) { flex-direction: row; padding-left: 48px; }
+    .timeline-card { width: 100%; }
+    .gap-lanes { flex-direction: column; align-items: center; gap: 24px; }
+    .use-cases { grid-template-columns: 1fr; }
+    .message-box { padding: 32px 20px; }
+    .message-box .main-msg { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1: TITLE -->
+<div class="slide">
+  <span class="slide-number">1 / 7</span>
+  <div class="title-icon">🚀</div>
+  <h1>なぜ<span class="accent">「今」</span>AIなのか</h1>
+  <div class="subtitle">AIレクチャー 第1回 — 導入編</div>
+  <div class="title-meta">
+    2026年4月<br>
+    磯貝政文
+  </div>
+</div>
+
+<!-- SLIDE 2: THE FORMULA -->
+<div class="slide">
+  <span class="slide-number">2 / 7</span>
+  <span class="tag">Core Concept</span>
+  <h2>AIが変える「能力の方程式」</h2>
+
+  <div class="formula-grid">
+    <div class="formula-card card-elite">
+      <div class="formula-label">パターン A</div>
+      <div class="formula-equation">
+        <span>優秀な人</span>
+        <span class="op">×</span>
+        <span class="ai-badge">AI</span>
+      </div>
+      <div class="formula-result result-infinity">= ∞（無限大）</div>
+      <div class="formula-example">
+        1人で10社以上の経営管理<br>
+        24時間365日の分析・レポート<br>
+        物理的限界を突破する
+      </div>
+    </div>
+
+    <div class="formula-card card-normal">
+      <div class="formula-label">パターン B</div>
+      <div class="formula-equation">
+        <span>普通の人</span>
+        <span class="op">×</span>
+        <span class="ai-badge">AI</span>
+      </div>
+      <div class="formula-result result-excellent">= 優秀レベル</div>
+      <div class="formula-example">
+        経験不足をAIが補完<br>
+        判断の精度が上がる<br>
+        組織全体の底上げ
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 3: BEFORE / AFTER -->
+<div class="slide">
+  <span class="slide-number">3 / 7</span>
+  <span class="tag">Before → After</span>
+  <h2>AI導入で何が変わるか</h2>
+
+  <div class="bar-chart">
+    <div class="bar-group-label">Before（AI なし）</div>
+    <div class="bar-row">
+      <div class="bar-label">優秀な人</div>
+      <div class="bar-container">
+        <div class="bar-fill bar-before" style="width: 75%;">能力 75</div>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">普通の人</div>
+      <div class="bar-container">
+        <div class="bar-fill bar-before" style="width: 40%;">能力 40</div>
+      </div>
+    </div>
+
+    <div class="arrow-label">⬇ AI導入 ⬇</div>
+
+    <div class="bar-group-label">After（AI あり）</div>
+    <div class="bar-row">
+      <div class="bar-label" style="color: var(--blue);">優秀な人 × AI</div>
+      <div class="bar-container">
+        <div class="bar-fill bar-after-elite" style="width: 100%;">能力 ∞ → 限界突破</div>
+      </div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label" style="color: var(--green);">普通の人 × AI</div>
+      <div class="bar-container">
+        <div class="bar-fill bar-after-normal" style="width: 75%;">能力 75 → 優秀レベル</div>
+      </div>
+    </div>
+
+    <hr class="bar-separator">
+    <div style="text-align: center; font-size: 15px; color: var(--yellow); font-weight: 600; margin-top: 8px;">
+      💡 組織全体の「底」が上がる = 最大のインパクト
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 4: COMPOUND INTEREST -->
+<div class="slide">
+  <span class="slide-number">4 / 7</span>
+  <span class="tag">Time Value</span>
+  <h2>AI活用力は<span style="color: var(--yellow);">複利</span>で効く</h2>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot" style="background: var(--green);"></div>
+      <div class="timeline-card" style="margin-right: auto;">
+        <h3 style="color: var(--green);">Month 1 — 基礎</h3>
+        <p>プロンプトの書き方を覚える<br>
+        <span class="highlight">効果: 日常業務が少し楽になる</span></p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot" style="background: var(--blue);"></div>
+      <div class="timeline-card" style="margin-left: auto;">
+        <h3 style="color: var(--blue);">Month 3 — 応用</h3>
+        <p>自分の業務に合わせた使い方を発見<br>
+        <span class="highlight">効果: 1時間の仕事が15分に</span></p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot" style="background: var(--purple);"></div>
+      <div class="timeline-card" style="margin-right: auto;">
+        <h3 style="color: var(--purple);">Month 6 — 変革</h3>
+        <p>業務プロセス自体を再設計<br>
+        <span class="highlight">効果: 今まで不可能だったことが可能に</span></p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot" style="background: var(--yellow);"></div>
+      <div class="timeline-card" style="margin-left: auto;">
+        <h3 style="color: var(--yellow);">Month 12 — 飛躍</h3>
+        <p>AIと協働することが当たり前になる<br>
+        <span class="highlight">効果: 1人で5人分以上の成果</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 5: THE GAP -->
+<div class="slide">
+  <span class="slide-number">5 / 7</span>
+  <span class="tag">Urgency</span>
+  <h2>始めるタイミングで<span style="color: var(--red);">差が開く</span></h2>
+
+  <div class="gap-visual">
+    <div class="gap-lanes">
+      <div class="gap-lane">
+        <div class="gap-lane-label" style="color: var(--green);">今日始める人</div>
+        <div class="gap-block now">
+          <div class="year">2026年4月</div>
+          <div class="level">スタート 🏃</div>
+        </div>
+        <div class="gap-arrow">↓</div>
+        <div class="gap-block future">
+          <div class="year">2026年10月</div>
+          <div class="level" style="color: var(--blue);">応用レベル 🚀</div>
+        </div>
+        <div class="gap-arrow">↓</div>
+        <div class="gap-block future">
+          <div class="year">2027年4月</div>
+          <div class="level" style="color: var(--purple);">変革レベル ⚡</div>
+        </div>
+      </div>
+
+      <div class="gap-lane">
+        <div class="gap-lane-label" style="color: var(--text2);">半年後に始める人</div>
+        <div class="gap-block" style="opacity: 0.3;">
+          <div class="year">2026年4月</div>
+          <div class="level" style="color: var(--text2);">まだ未着手</div>
+        </div>
+        <div class="gap-arrow">↓</div>
+        <div class="gap-block late">
+          <div class="year">2026年10月</div>
+          <div class="level" style="color: var(--red);">スタート 🐢</div>
+        </div>
+        <div class="gap-arrow">↓</div>
+        <div class="gap-block late">
+          <div class="year">2027年4月</div>
+          <div class="level" style="color: var(--text2);">まだ基礎...</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 24px; padding: 16px; background: var(--card); border: 1px solid var(--border); border-radius: 12px;">
+      <div style="font-size: 16px; font-weight: 700; color: var(--yellow); margin-bottom: 8px;">
+        ⚠ 1年後、AIは「当たり前」になる
+      </div>
+      <div style="font-size: 14px; color: var(--text2);">
+        そのとき「使いこなせる人」と「触り始める人」では<br>
+        <strong style="color: #fff; font-size: 16px;">取り返しのつかない差</strong>が生まれている
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 6: CORE MESSAGE -->
+<div class="slide">
+  <span class="slide-number">6 / 7</span>
+  <div class="message-box">
+    <div class="icon">💎</div>
+    <div class="main-msg">
+      AIは「できる人」を無限にし<br>
+      「普通の人」を優秀にする
+    </div>
+    <div class="sub-msg">
+      だからこそ、<strong>組織全体で「今」始める</strong>必要がある<br><br>
+      半年後に始めても、AIの能力は同じ。<br>
+      でも<strong>使う人の経験値</strong>は、今日から積まないと追いつかない。
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 7: FOR ACCOUNTING FIRMS -->
+<div class="slide">
+  <span class="slide-number">7 / 7</span>
+  <span class="tag">会計事務所 × AI</span>
+  <h2>会計事務所だからこそ、今</h2>
+
+  <div class="use-cases">
+    <div class="use-case">
+      <div class="uc-icon">📊</div>
+      <h3>月次レポート</h3>
+      <div class="before">Before: 丸1日かかる</div>
+      <div class="after">After: 30分で完成</div>
+    </div>
+    <div class="use-case">
+      <div class="uc-icon">🔍</div>
+      <h3>決算チェック</h3>
+      <div class="before">Before: 経験と勘</div>
+      <div class="after">After: AI網羅チェック</div>
+    </div>
+    <div class="use-case">
+      <div class="uc-icon">💡</div>
+      <h3>顧問先への提案</h3>
+      <div class="before">Before: 税務だけ</div>
+      <div class="after">After: 経営分析まで</div>
+    </div>
+    <div class="use-case">
+      <div class="uc-icon">📋</div>
+      <h3>議事録・要約</h3>
+      <div class="before">Before: 手作業</div>
+      <div class="after">After: 自動生成</div>
+    </div>
+    <div class="use-case">
+      <div class="uc-icon">📑</div>
+      <h3>契約書レビュー</h3>
+      <div class="before">Before: 全文読み込み</div>
+      <div class="after">After: リスク自動検出</div>
+    </div>
+    <div class="use-case">
+      <div class="uc-icon">🏢</div>
+      <h3>顧問先の省力化</h3>
+      <div class="before">Before: 個別対応</div>
+      <div class="after">After: 仕組みで提供</div>
+    </div>
+  </div>
+
+  <div style="margin-top: 32px; text-align: center; font-size: 15px; color: var(--yellow); font-weight: 600;">
+    💡 自社の効率化 + 顧問先への提案力強化 = 事務所の競争力
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav">
+  <button onclick="scrollPrev()">▲</button>
+  <button onclick="scrollNext()">▼</button>
+</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+let current = 0;
+
+function scrollTo(i) {
+  if (i >= 0 && i < slides.length) {
+    current = i;
+    slides[i].scrollIntoView({ behavior: 'smooth' });
+  }
+}
+function scrollNext() { scrollTo(current + 1); }
+function scrollPrev() { scrollTo(current - 1); }
+
+// Keyboard nav
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); scrollNext(); }
+  if (e.key === 'ArrowUp') { e.preventDefault(); scrollPrev(); }
+});
+
+// Track current slide on scroll
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      current = Array.from(slides).indexOf(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+slides.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
