@@ -87,6 +87,16 @@
     margin: 20px 0;
     border-radius: 0 8px 8px 0;
   }
+  .success-box {
+    background: #e8f5e9;
+    border-left: 4px solid #43a047;
+    padding: 15px 20px;
+    margin: 20px 0;
+    border-radius: 0 8px 8px 0;
+  }
+  .level-must { color: #e53935; font-weight: bold; }
+  .level-recommend { color: #ff9800; font-weight: bold; }
+  .level-optional { color: #2196F3; font-weight: bold; }
   .month-header {
     display: inline-block;
     padding: 8px 24px;
@@ -344,28 +354,64 @@
 <div class="slide">
   <h1>⚠️ AIリテラシー：顧客情報保護ガイドライン</h1>
 
-  <h2>絶対にやってはいけないこと（NG行動）</h2>
-  <div class="danger-box">
-    <p style="margin-bottom: 0;"><strong>以下の行動は情報漏洩のリスクがあります。必ず守ってください。</strong></p>
+  <h2>まず知っておくべきこと：有料プランのデータ保護</h2>
+  <div class="success-box">
+    <p style="margin-bottom: 8px;"><strong>✅ Claude Pro / Max / Team プラン（有料）の場合</strong></p>
+    <ul style="margin: 0; padding-left: 20px;">
+      <li>入力したデータは<strong>AIの学習（モデルトレーニング）に一切使用されません</strong></li>
+      <li>これはAnthropicの利用規約に明記されています</li>
+      <li>チャット履歴はアカウントに保存されますが、外部に共有・学習されることはありません</li>
+    </ul>
   </div>
+  <div class="warn-box">
+    <p style="margin-bottom: 8px;"><strong>⚠️ 無料プラン（Free）の場合</strong></p>
+    <ul style="margin: 0; padding-left: 20px;">
+      <li>入力データがモデル改善に使用される可能性があります</li>
+      <li>業務利用には<strong>必ず有料プランを使用してください</strong></li>
+    </ul>
+  </div>
+  <p>→ 本レクチャーでは<strong>有料プラン利用を前提</strong>としています。以下のガイドラインは「学習されるから危険」ではなく、<strong>会計事務所としての情報管理の基本</strong>として定めます。</p>
+
+  <h2>情報の取り扱いルール（3段階）</h2>
   <table>
-    <tr><th>No.</th><th>NG行動</th><th>リスク</th><th>対策</th></tr>
-    <tr><td>1</td><td>顧客名・個人名をそのまま入力</td><td>AIの学習データに取り込まれる可能性</td><td>「A社」「甲」等に置換してから入力</td></tr>
-    <tr><td>2</td><td>マイナンバー・口座番号等の入力</td><td>個人情報保護法違反のリスク</td><td>絶対に入力しない。必要なら構造だけ聞く</td></tr>
-    <tr><td>3</td><td>確定申告書・決算書をそのままアップロード</td><td>機密情報の流出リスク</td><td>数値をマスキングするか、構造のみ共有</td></tr>
-    <tr><td>4</td><td>クライアントのパスワード・認証情報の入力</td><td>不正アクセスの要因になりうる</td><td>入力しない。別途安全な方法で管理</td></tr>
-    <tr><td>5</td><td>チャット履歴をONにしたまま機密情報を入力</td><td>履歴として残り続けるリスク</td><td>機密情報を扱う際は必ず履歴OFFまたはAPI利用</td></tr>
+    <tr><th>レベル</th><th>対象</th><th>ルール</th><th>理由</th></tr>
+    <tr>
+      <td><span class="level-must">🔴 禁止</span></td>
+      <td>マイナンバー、口座番号、パスワード、認証情報</td>
+      <td>AIへの入力を禁止</td>
+      <td>個人情報保護法・税理士法上の守秘義務。学習有無に関係なく、そもそもAIに渡す必要がない情報</td>
+    </tr>
+    <tr>
+      <td><span class="level-recommend">🟡 推奨</span></td>
+      <td>顧客名・個人名、具体的な金額</td>
+      <td>「A社」「甲」等に置換してから入力</td>
+      <td>有料プランなら学習されないが、万が一の画面共有・誤操作時の保険。会計事務所としての信頼維持</td>
+    </tr>
+    <tr>
+      <td><span class="level-optional">🔵 許容</span></td>
+      <td>確定申告書・決算書の構造、仕訳パターン、税務論点、業務フロー</td>
+      <td>そのまま入力OK</td>
+      <td>有料プランではデータは学習に使われない。AIの最大の活用領域であり、過度な制限は本末転倒</td>
+    </tr>
+  </table>
+
+  <h2>よくある誤解と正しい理解</h2>
+  <table>
+    <tr><th>❌ 誤解</th><th>✅ 正しい理解</th></tr>
+    <tr><td>「AIに入力したデータは全部学習される」</td><td>有料プランでは学習に使用されない（Anthropic利用規約に明記）</td></tr>
+    <tr><td>「決算書をAIに見せるのは危険」</td><td>有料プランなら安全。むしろAIによるチェックで人的ミスを減らせる</td></tr>
+    <tr><td>「チャット履歴をOFFにしないとダメ」</td><td>有料プランの履歴は自分のアカウント内のみ。むしろONにしておくと過去のやり取りを参照できて便利</td></tr>
+    <tr><td>「AIを使っていることをクライアントに隠すべき」</td><td>適切に活用していることは信頼材料になる。ただし「顧客データはAI学習に使われない有料プランを使用」と説明できる体制が必要</td></tr>
   </table>
 
   <h2>事前準備チェックリスト</h2>
   <table>
-    <tr><th>No.</th><th>準備項目</th><th>詳細</th><th>完了</th></tr>
-    <tr><td>1</td><td>AI利用に関する社内ルールの策定</td><td>何を入力してよいか/いけないかの基準を明文化</td><td>☐</td></tr>
-    <tr><td>2</td><td>チャット履歴の設定確認</td><td>各ツールで履歴OFF設定またはAPI利用の確認</td><td>☐</td></tr>
-    <tr><td>3</td><td>データマスキングルールの策定</td><td>顧客名→記号、金額の丸め方等のルール化</td><td>☐</td></tr>
-    <tr><td>4</td><td>利用ツールの選定と契約確認</td><td>法人契約（データが学習に使われない契約か）</td><td>☐</td></tr>
-    <tr><td>5</td><td>インシデント対応フローの策定</td><td>万が一情報を入力してしまった場合の対処法</td><td>☐</td></tr>
-    <tr><td>6</td><td>クライアントへの説明資料の準備</td><td>AI活用について事前に説明・同意を得る体制</td><td>☐</td></tr>
+    <tr><th>No.</th><th>準備項目</th><th>詳細</th><th>優先度</th><th>完了</th></tr>
+    <tr><td>1</td><td>有料プランの契約</td><td>Claude Pro以上を契約し、学習対象外であることを確認</td><td><span class="level-must">必須</span></td><td>☐</td></tr>
+    <tr><td>2</td><td>🔴禁止情報リストの周知</td><td>マイナンバー・パスワード等、絶対に入力しない情報を全員で共有</td><td><span class="level-must">必須</span></td><td>☐</td></tr>
+    <tr><td>3</td><td>社内利用ガイドラインの策定</td><td>上記3段階ルールを社内文書化</td><td><span class="level-recommend">推奨</span></td><td>☐</td></tr>
+    <tr><td>4</td><td>クライアント向け説明の準備</td><td>「AI活用について」の説明テンプレートを用意</td><td><span class="level-recommend">推奨</span></td><td>☐</td></tr>
+    <tr><td>5</td><td>インシデント対応の確認</td><td>万が一🔴禁止情報を入力した場合→チャット削除＋報告</td><td><span class="level-optional">任意</span></td><td>☐</td></tr>
   </table>
 
   <h2>質問フォームについて</h2>
