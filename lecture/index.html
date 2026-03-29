@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIレクチャー ライブラリ</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --card2: #263347;
+    --border: #334155;
+    --text: #e2e8f0;
+    --text2: #94a3b8;
+    --blue: #3b82f6;
+    --green: #10b981;
+    --yellow: #f59e0b;
+    --purple: #a855f7;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  .header {
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    padding: 32px;
+    text-align: center;
+  }
+  .header-icon { font-size: 48px; margin-bottom: 12px; }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .header .subtitle {
+    font-size: 14px;
+    color: var(--text2);
+  }
+
+  .main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 32px 24px;
+  }
+
+  .section-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text2);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    padding-left: 4px;
+  }
+
+  .card-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .card:hover {
+    border-color: var(--blue);
+    background: var(--card2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(59,130,246,0.15);
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+  }
+  .card.accent-yellow::before { background: var(--yellow); }
+  .card.accent-blue::before { background: var(--blue); }
+  .card.accent-green::before { background: var(--green); }
+  .card.accent-purple::before { background: var(--purple); }
+
+  .card-icon {
+    font-size: 32px;
+    flex-shrink: 0;
+    width: 48px;
+    text-align: center;
+  }
+  .card-body { flex: 1; }
+  .card-number {
+    font-size: 11px;
+    color: var(--text2);
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .card-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+  .card-desc {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.5;
+  }
+  .card-meta {
+    flex-shrink: 0;
+    text-align: right;
+  }
+  .card-date {
+    font-size: 12px;
+    color: var(--text2);
+  }
+  .card-badge {
+    display: inline-block;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-top: 4px;
+  }
+  .badge-new {
+    background: rgba(16,185,129,0.15);
+    border: 1px solid var(--green);
+    color: var(--green);
+  }
+  .badge-coming {
+    background: rgba(148,163,184,0.1);
+    border: 1px solid var(--text2);
+    color: var(--text2);
+  }
+  .card-arrow {
+    color: var(--text2);
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  /* COMING SOON */
+  .card.coming-soon {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  .card.coming-soon:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: var(--border);
+    background: var(--card);
+  }
+
+  .footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 12px;
+    color: var(--text2);
+    border-top: 1px solid var(--border);
+  }
+
+  @media screen and (max-width: 768px) {
+    .header { padding: 24px 16px; }
+    .header h1 { font-size: 22px; }
+    .main { padding: 20px 12px; }
+    .card { padding: 16px; gap: 12px; }
+    .card-title { font-size: 15px; }
+    .card-icon { font-size: 28px; width: 40px; }
+    .card-meta { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-icon">📚</div>
+  <h1>AIレクチャー ライブラリ</h1>
+  <div class="subtitle">鈴木先生事務所向け AIリテラシー研修資料</div>
+</div>
+
+<div class="main">
+
+  <!-- LECTURE SERIES -->
+  <div class="section-label">📖 レクチャー資料</div>
+  <div class="card-list">
+
+    <a href="why_ai_now.html" class="card accent-yellow">
+      <div class="card-icon">🚀</div>
+      <div class="card-body">
+        <div class="card-number">第1回 — 2026年4月1日</div>
+        <div class="card-title">なぜ「今」AIなのか</div>
+        <div class="card-desc">AI × 人の能力方程式 / 複利効果 / 会計事務所での活用</div>
+      </div>
+      <div class="card-meta">
+        <div class="card-date">4/1</div>
+        <div class="card-badge badge-new">NEW</div>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+    <div class="card accent-blue coming-soon">
+      <div class="card-icon">🛠</div>
+      <div class="card-body">
+        <div class="card-number">第2回 — 予定</div>
+        <div class="card-title">AIを使ってみよう（実践ワーク）</div>
+        <div class="card-desc">Claude / ChatGPT の基本操作 / プロンプトの書き方</div>
+      </div>
+      <div class="card-meta">
+        <div class="card-badge badge-coming">COMING</div>
+      </div>
+    </div>
+
+    <div class="card accent-green coming-soon">
+      <div class="card-icon">📊</div>
+      <div class="card-body">
+        <div class="card-number">第3回 — 予定</div>
+        <div class="card-title">会計業務 × AI 実践編</div>
+        <div class="card-desc">月次レポート自動化 / 決算チェック / 顧問先提案</div>
+      </div>
+      <div class="card-meta">
+        <div class="card-badge badge-coming">COMING</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- REFERENCE -->
+  <div class="section-label">📋 参考資料</div>
+  <div class="card-list">
+
+    <a href="ai_roadmap_v1.html" class="card accent-purple">
+      <div class="card-icon">🗺</div>
+      <div class="card-body">
+        <div class="card-number">参考資料</div>
+        <div class="card-title">AIリテラシー ロードマップ案</div>
+        <div class="card-desc">全体計画 / セキュリティガイドライン / ステップ別到達目標</div>
+      </div>
+      <div class="card-meta">
+        <div class="card-date">3/29</div>
+      </div>
+      <div class="card-arrow">→</div>
+    </a>
+
+  </div>
+
+</div>
+
+<div class="footer">
+  AIレクチャー ライブラリ — 磯貝政文 | Powered by Claude Code
+</div>
+
+</body>
+</html>
