@@ -166,7 +166,7 @@
 
   <h2>全体構成</h2>
   <div class="phase-bar">
-    <div class="p1">Month 1（4月）<div class="phase-detail">基礎固め<br>INPUT 70% / 実践 30%</div></div>
+    <div class="p1">Month 1（4月）<div class="phase-detail">基礎固め<br>INPUT 100%</div></div>
     <div class="p2">Month 2（5月）<div class="phase-detail">実務適用<br>INPUT 30% / 実践 70%</div></div>
     <div class="p3">Month 3（6月）<div class="phase-detail">自走化・展開<br>INPUT 10% / 実践 90%</div></div>
   </div>
@@ -174,56 +174,64 @@
   <h2>30分の基本フォーマット</h2>
   <table>
     <tr><th>時間</th><th>内容</th><th>備考</th></tr>
-    <tr><td><strong>9:15〜9:20</strong>（5分）</td><td>前日の振り返り・質問回答</td><td>質問フォームからの投稿を優先対応</td></tr>
-    <tr><td><strong>9:20〜9:35</strong>（15分）</td><td>INPUT：本日のテーマ</td><td>ロードマップに沿った知識習得</td></tr>
-    <tr><td><strong>9:35〜9:45</strong>（10分）</td><td>OUTPUT：実践ワーク</td><td>実際にAIを触って課題に取り組む</td></tr>
+    <tr><td><strong>9:15〜9:20</strong>（5分）</td><td>質問フォーム対応＋スケジュール確認</td><td>ブルーストーン社の質問フォームからの投稿を優先対応</td></tr>
+    <tr><td><strong>9:20〜9:45</strong>（25分）</td><td>INPUT：本日のテーマ</td><td>ロードマップに沿った知識習得・ディスカッション</td></tr>
   </table>
-  <p style="color: #666; font-size: 14px;">※ Month 2以降はOUTPUTの比率を増やし、Month 3ではほぼ全てOUTPUT＋質問回答に移行。</p>
+  <p style="color: #666; font-size: 14px;">※ 4月は基礎固めのためINPUT 100%。Month 2以降はOUTPUT（実践ワーク）の比率を段階的に増やし、Month 3ではほぼ全てOUTPUT＋質問回答に移行。</p>
 </div>
 
 <!-- Month 1 -->
 <div class="slide">
   <h1><span class="month-header month-1">Month 1</span> 基礎固め（4月）</h1>
-  <p style="font-size: 18px; color: #666;">テーマ：「AIを安全に・正しく使えるようになる」</p>
+  <p style="font-size: 18px; color: #666;">テーマ：「AI活用の思考転換 — まずAIに考えさせる」</p>
 
-  <h3>Week 1：AIの基本と安全な使い方</h3>
+  <div class="info-box">
+    <strong>磯貝メソッド 5原則</strong>（Month 1 全体を貫く考え方）<br>
+    ① まずAIに考えさせる → 自分は最終判断に集中<br>
+    ② 目標（ゴール）を明確にする → ゴールがブレるとAIもブレる<br>
+    ③ ステップ分解を指示する → 大きなタスクは分解してから実行<br>
+    ④ 情報はAIに食べさせる → 読む前に、食べさせる<br>
+    ⑤ プロジェクト機能でナレッジを蓄積する → テリトリーを分けてデータを蓄積
+  </div>
+
+  <h3>Week 1：思考転換＋セキュリティ</h3>
   <table>
-    <tr><th>Day</th><th>テーマ</th><th>INPUT</th><th>OUTPUT</th><th>獲得スキル</th></tr>
-    <tr><td>1</td><td>オリエンテーション</td><td>ロードマップ共有、ゴール設定、AI活用の全体像</td><td>Claude/ChatGPTにアカウント設定</td><td>環境構築</td></tr>
-    <tr><td>2</td><td>AIとは何か</td><td>生成AIの仕組み（LLM）、できること・できないこと</td><td>簡単な質問をAIに投げてみる</td><td>基本操作</td></tr>
-    <tr class="security-row"><td>3</td><td>⚠️ AIリテラシー①</td><td><strong>顧客情報保護の原則</strong>：何を入力してはいけないか、情報流出の経路</td><td>NG例・OK例の判別ワーク</td><td>情報セキュリティ基礎</td></tr>
-    <tr class="security-row"><td>4</td><td>⚠️ AIリテラシー②</td><td><strong>事前準備と設定</strong>：履歴OFF設定、API利用とWeb利用の違い、社内ルールの策定</td><td>各自の設定確認・変更</td><td>セキュリティ設定</td></tr>
-    <tr class="security-row"><td>5</td><td>⚠️ AIリテラシー③</td><td><strong>リスク行動の具体例</strong>：個人情報の入力、ファイルアップロードの注意、ハルシネーション</td><td>リスク行動チェックリスト作成</td><td>リスク判断力</td></tr>
+    <tr><th>Day</th><th>テーマ</th><th>INPUT</th><th>獲得スキル</th></tr>
+    <tr><td>1</td><td>オリエンテーション</td><td>ロードマップ共有、ゴール設定、AI活用の全体像。「AIは道具ではなく、思考のパートナー」</td><td>全体像の理解</td></tr>
+    <tr><td>2</td><td>思考の順番を変える</td><td><strong>原則①：まずAIに考えさせる</strong>。難しい問いが来たら、そのままAIに投げる（ノータイム）。AIが出した案に対して初めて自分で考え、判断する</td><td>思考プロセスの転換</td></tr>
+    <tr><td>3</td><td>ゴールの明確化</td><td><strong>原則②：ゴールがブレるとAIもブレる</strong>。目標が確定している限り、AIはその方向に正確に進める。「やってはいけないこと」の線引きをしてから自由にやらせる</td><td>目標設定力</td></tr>
+    <tr class="security-row"><td>4</td><td>⚠️ AIリテラシー①</td><td><strong>顧客情報保護の原則</strong>：何を入力してはいけないか、情報流出の経路。履歴OFF設定、API利用とWeb利用の違い</td><td>情報セキュリティ基礎</td></tr>
+    <tr class="security-row"><td>5</td><td>⚠️ AIリテラシー②</td><td><strong>リスク行動の具体例</strong>：個人情報の入力、ファイルアップロードの注意、ハルシネーション。社内ルールの策定方法</td><td>リスク判断力</td></tr>
   </table>
 
-  <h3>Week 2：プロンプトの基本</h3>
+  <h3>Week 2：情報をAIに食べさせる</h3>
   <table>
-    <tr><th>Day</th><th>テーマ</th><th>INPUT</th><th>OUTPUT</th><th>獲得スキル</th></tr>
-    <tr><td>6</td><td>プロンプトとは</td><td>良い指示と悪い指示の違い、具体的に書くことの重要性</td><td>同じ質問を曖昧→具体で比較</td><td>プロンプト設計の基本</td></tr>
-    <tr><td>7</td><td>役割を与える</td><td>「あなたは◯◯です」の効果、ペルソナ設定のコツ</td><td>会計事務所の業務でペルソナを設定</td><td>ロール設定</td></tr>
-    <tr><td>8</td><td>ステップバイステップ</td><td>複雑な作業を分解して指示する方法</td><td>月次処理の手順をAIに分解させる</td><td>段階的指示</td></tr>
-    <tr><td>9</td><td>出力形式の指定</td><td>表形式、箇条書き、マークダウン等の使い分け</td><td>同じ情報を3つの形式で出力させる</td><td>出力コントロール</td></tr>
-    <tr><td>10</td><td>実践まとめ</td><td>Week 1-2の総復習、質問タイム</td><td>自分の業務で1つAIを使ってみた結果を共有</td><td>総合力チェック</td></tr>
+    <tr><th>Day</th><th>テーマ</th><th>INPUT</th><th>獲得スキル</th></tr>
+    <tr><td>6</td><td>読む前に、食べさせる</td><td><strong>原則④：情報はAIに食べさせる</strong>。資料・フィードバック・メモ——全てまずAIにインプット。AIに構造化・要約・ポイント抽出させてから、自分が読む</td><td>情報処理の転換</td></tr>
+    <tr><td>7</td><td>ステップ分解</td><td><strong>原則③：大きなタスクは分解してから実行</strong>。目標を伝えた上で「ステップに分けて考えて」と指示。分からない点は「自分が分かるレベルまでブレイクダウンして」と依頼</td><td>段階的指示</td></tr>
+    <tr><td>8</td><td>AIの意見を引き出す</td><td>AIからの質問（選択肢）はスキップし、「あなたはどう思う？」とAIの意見を求める。自分が考えるのは「最終判断」のフェーズのみ</td><td>AIとの対話力</td></tr>
+    <tr><td>9</td><td>フィードバック活用法</td><td>上司や顧客からのフィードバック＋元資料をAIに同時投入→改善案を生成させる。「読んでも分からない」で止まらない方法</td><td>フィードバック処理</td></tr>
+    <tr><td>10</td><td>Week 1-2 まとめ</td><td>磯貝メソッド原則①〜④の総復習。質問タイム。各自が「思考の順番を変えてみた」体験を共有</td><td>総合力チェック</td></tr>
   </table>
 
-  <h3>Week 3：文書作成・要約</h3>
+  <h3>Week 3：プロジェクト運用＋実務活用</h3>
   <table>
-    <tr><th>Day</th><th>テーマ</th><th>INPUT</th><th>OUTPUT</th><th>獲得スキル</th></tr>
-    <tr><td>11</td><td>メール・文書の下書き</td><td>ビジネスメール作成のコツ、トーン調整</td><td>クライアント向けメールをAIで作成</td><td>文書作成スキル</td></tr>
-    <tr><td>12</td><td>文書の要約・整理</td><td>長文の要約、論点抽出のプロンプト</td><td>実際の通知文や規定の要約</td><td>要約スキル</td></tr>
-    <tr><td>13</td><td>議事録作成</td><td>文字起こし→議事録の変換フロー、Gamma活用</td><td>サンプル文字起こしから議事録を作成</td><td>議事録作成フロー</td></tr>
-    <tr><td>14</td><td>マニュアル作成</td><td>業務手順書のAI活用、フォーマット統一</td><td>自分の担当業務のマニュアルをAIで作成</td><td>マニュアル化スキル</td></tr>
-    <tr><td>15</td><td>実践まとめ</td><td>Week 3の総復習、成果共有</td><td>作成した文書の相互レビュー</td><td>品質チェック力</td></tr>
+    <tr><th>Day</th><th>テーマ</th><th>INPUT</th><th>獲得スキル</th></tr>
+    <tr><td>11</td><td>プロジェクト機能の基本</td><td><strong>原則⑤：テリトリーを分けてデータを蓄積</strong>。テーマごとにプロジェクトを分ける（混在させない）。資料はドラッグ&amp;ドロップで追加</td><td>プロジェクト運用</td></tr>
+    <tr><td>12</td><td>ナレッジの蓄積</td><td>会話終了時に「気づき・注意点をまとめて」と指示し、結果をプロジェクトに追加。「○○AI」としてナレッジを再利用可能な資産に変える</td><td>ナレッジ管理</td></tr>
+    <tr><td>13</td><td>メール・文書作成</td><td>AIに食べさせる→構造化→下書き生成のフロー。クライアント向けメールのトーン調整</td><td>文書作成スキル</td></tr>
+    <tr><td>14</td><td>要約・議事録作成</td><td>長文の要約、論点抽出。文字起こし→議事録の変換フロー。まず全文をAIに食べさせてから整理</td><td>要約・議事録スキル</td></tr>
+    <tr><td>15</td><td>Week 3 まとめ</td><td>プロジェクト運用の確認。各自のプロジェクト構成レビュー。成果共有</td><td>品質チェック力</td></tr>
   </table>
 
-  <h3>Week 4：データ処理の入門</h3>
+  <h3>Week 4：データ処理＋振り返り</h3>
   <table>
-    <tr><th>Day</th><th>テーマ</th><th>INPUT</th><th>OUTPUT</th><th>獲得スキル</th></tr>
-    <tr><td>16</td><td>Excelとの連携</td><td>AIにExcelの関数・マクロを聞く方法</td><td>実際のExcel作業をAIに相談</td><td>Excel×AI連携</td></tr>
-    <tr><td>17</td><td>データの読み解き</td><td>数値データの分析依頼のコツ</td><td>簡単なPLデータをAIに分析させる</td><td>データ分析入門</td></tr>
-    <tr class="security-row"><td>18</td><td>⚠️ データ取扱い注意</td><td><strong>機密データのマスキング手法</strong>：顧客名→A社、金額の丸め等</td><td>実データのマスキング練習</td><td>データマスキング</td></tr>
-    <tr><td>19</td><td>Month 1 振り返り</td><td>1ヶ月の成長確認、進捗チェック</td><td>各自の「Before/After」発表</td><td>自己評価力</td></tr>
-    <tr><td>20</td><td>Month 2 準備</td><td>Month 2の予告、各自の重点課題設定</td><td>自分のOUTPUT目標を設定</td><td>目標設定</td></tr>
+    <tr><th>Day</th><th>テーマ</th><th>INPUT</th><th>獲得スキル</th></tr>
+    <tr><td>16</td><td>Excelとの連携</td><td>AIにExcelの関数・マクロを聞く方法。数値データの分析依頼のコツ</td><td>Excel×AI連携</td></tr>
+    <tr class="security-row"><td>17</td><td>⚠️ データ取扱い注意</td><td><strong>機密データのマスキング手法</strong>：顧客名→A社、金額の丸め等。会計事務所特有のリスクと対策</td><td>データマスキング</td></tr>
+    <tr><td>18</td><td>プロンプトの型</td><td>良い指示と悪い指示の違い。役割設定、出力形式の指定。磯貝メソッドを踏まえたプロンプト設計</td><td>プロンプト設計</td></tr>
+    <tr><td>19</td><td>Month 1 振り返り</td><td>1ヶ月の成長確認。磯貝メソッド5原則の定着度チェック。Before/After共有</td><td>自己評価力</td></tr>
+    <tr><td>20</td><td>Month 2 準備</td><td>Month 2の予告：実務適用フェーズへ。各自の重点課題設定。OUTPUT目標の策定</td><td>目標設定</td></tr>
   </table>
 </div>
 
@@ -296,18 +304,20 @@
   <h2>スキル習得チェックリスト</h2>
   <table>
     <tr><th>カテゴリ</th><th>スキル項目</th><th>レベル基準</th><th>松草さん</th><th>中居さん</th><th>時期</th></tr>
-    <tr><td rowspan="4"><strong>🔒 AIリテラシー</strong></td><td>顧客情報の取扱いルールを理解</td><td>説明できる</td><td>☐</td><td>☐</td><td>Week 1</td></tr>
-    <tr><td>セキュリティ設定の実施</td><td>自分で設定できる</td><td>☐</td><td>☐</td><td>Week 1</td></tr>
+    <tr><td rowspan="5"><strong>🧠 磯貝メソッド</strong></td><td>まずAIに考えさせる</td><td>自分で悩む前にAIに投げる習慣がついた</td><td>☐</td><td>☐</td><td>Week 1</td></tr>
+    <tr><td>ゴールの明確化</td><td>AIへの指示に明確な目標を含められる</td><td>☐</td><td>☐</td><td>Week 1</td></tr>
+    <tr><td>ステップ分解</td><td>大きなタスクを分解して指示できる</td><td>☐</td><td>☐</td><td>Week 2</td></tr>
+    <tr><td>情報をAIに食べさせる</td><td>資料を読む前にAIに投入する習慣がついた</td><td>☐</td><td>☐</td><td>Week 2</td></tr>
+    <tr><td>AIの意見を引き出す</td><td>選択肢をスキップし「どう思う？」と聞ける</td><td>☐</td><td>☐</td><td>Week 2</td></tr>
+    <tr><td rowspan="3"><strong>🔒 AIリテラシー</strong></td><td>顧客情報の取扱いルールを理解</td><td>説明できる</td><td>☐</td><td>☐</td><td>Week 1</td></tr>
     <tr><td>リスク行動の判別</td><td>NG/OKを即判断できる</td><td>☐</td><td>☐</td><td>Week 1</td></tr>
     <tr><td>データマスキングの実践</td><td>実データで実行できる</td><td>☐</td><td>☐</td><td>Week 4</td></tr>
-    <tr><td rowspan="4"><strong>💬 プロンプト</strong></td><td>基本的な指示出し</td><td>意図通りの回答を得られる</td><td>☐</td><td>☐</td><td>Week 2</td></tr>
-    <tr><td>ロール設定</td><td>適切なペルソナを設定できる</td><td>☐</td><td>☐</td><td>Week 2</td></tr>
-    <tr><td>出力形式の制御</td><td>表・箇条書き等を指定できる</td><td>☐</td><td>☐</td><td>Week 2</td></tr>
-    <tr><td>高度なプロンプト</td><td>Few-shot等を使いこなせる</td><td>☐</td><td>☐</td><td>Week 7</td></tr>
-    <tr><td rowspan="4"><strong>📝 文書作成</strong></td><td>メール下書き</td><td>AIで業務メールを作成できる</td><td>☐</td><td>☐</td><td>Week 3</td></tr>
-    <tr><td>要約・整理</td><td>長文を的確に要約できる</td><td>☐</td><td>☐</td><td>Week 3</td></tr>
-    <tr><td>議事録作成</td><td>文字起こし→議事録の一気通貫</td><td>☐</td><td>☐</td><td>Week 3</td></tr>
-    <tr><td>マニュアル作成</td><td>業務手順書を作成できる</td><td>☐</td><td>☐</td><td>Week 3</td></tr>
+    <tr><td rowspan="3"><strong>📂 プロジェクト運用</strong></td><td>テーマ別プロジェクト分離</td><td>業務テーマごとにプロジェクトを分けられる</td><td>☐</td><td>☐</td><td>Week 3</td></tr>
+    <tr><td>ナレッジ蓄積</td><td>会話の気づきをプロジェクトに追加できる</td><td>☐</td><td>☐</td><td>Week 3</td></tr>
+    <tr><td>「○○AI」の構築</td><td>上司・専門家の知見をAIに蓄積できる</td><td>☐</td><td>☐</td><td>Week 3</td></tr>
+    <tr><td rowspan="3"><strong>📝 文書作成</strong></td><td>メール下書き</td><td>AIで業務メールを作成できる</td><td>☐</td><td>☐</td><td>Week 3</td></tr>
+    <tr><td>要約・議事録</td><td>文字起こし→議事録の一気通貫</td><td>☐</td><td>☐</td><td>Week 3</td></tr>
+    <tr><td>プロンプト設計</td><td>役割設定・出力形式を指定できる</td><td>☐</td><td>☐</td><td>Week 4</td></tr>
     <tr><td rowspan="2"><strong>📊 データ処理</strong></td><td>Excel関数のAI相談</td><td>AIに関数を聞いて活用できる</td><td>☐</td><td>☐</td><td>Week 4</td></tr>
     <tr><td>データ分析</td><td>数値データの読み解きを依頼できる</td><td>☐</td><td>☐</td><td>Week 4</td></tr>
     <tr><td rowspan="4"><strong>🏢 業務適用</strong></td><td>仕訳効率化</td><td>AIを仕訳業務に活用できる</td><td>☐</td><td>☐</td><td>Week 5</td></tr>
