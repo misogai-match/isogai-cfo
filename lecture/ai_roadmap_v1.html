@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIレクチャー ロードマップ v1</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Helvetica Neue', 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
+    background: #f5f5f5;
+    color: #333;
+    line-height: 1.8;
+    font-size: 16px;
+  }
+  .slide {
+    max-width: 960px;
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+    padding: 50px 60px;
+  }
+  h1 {
+    font-size: 28px;
+    color: #1a1a2e;
+    border-bottom: 3px solid #2196F3;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+  }
+  h2 {
+    font-size: 22px;
+    color: #1a1a2e;
+    margin-top: 35px;
+    margin-bottom: 15px;
+    border-left: 4px solid #2196F3;
+    padding-left: 12px;
+  }
+  h3 {
+    font-size: 18px;
+    color: #1565c0;
+    margin-top: 25px;
+    margin-bottom: 10px;
+  }
+  p { margin-bottom: 15px; }
+  ul, ol { margin-left: 25px; margin-bottom: 15px; }
+  li { margin-bottom: 6px; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0 25px;
+    font-size: 14px;
+  }
+  th {
+    background: #1a1a2e;
+    color: #fff;
+    padding: 10px 12px;
+    text-align: left;
+    white-space: nowrap;
+  }
+  td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #eee;
+    vertical-align: top;
+  }
+  tr:hover { background: #f9f9f9; }
+  .overview-table th { background: #2196F3; }
+  .overview-table td:first-child { font-weight: bold; white-space: nowrap; }
+  .info-box {
+    background: #e8f4fd;
+    border-left: 4px solid #2196F3;
+    padding: 15px 20px;
+    margin: 20px 0;
+    border-radius: 0 8px 8px 0;
+  }
+  .warn-box {
+    background: #fff3e0;
+    border-left: 4px solid #ff9800;
+    padding: 15px 20px;
+    margin: 20px 0;
+    border-radius: 0 8px 8px 0;
+  }
+  .danger-box {
+    background: #fce4ec;
+    border-left: 4px solid #e53935;
+    padding: 15px 20px;
+    margin: 20px 0;
+    border-radius: 0 8px 8px 0;
+  }
+  .month-header {
+    display: inline-block;
+    padding: 8px 24px;
+    border-radius: 24px;
+    font-weight: bold;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 15px;
+  }
+  .month-1 { background: #2196F3; }
+  .month-2 { background: #ff9800; }
+  .month-3 { background: #4caf50; }
+  .phase-bar {
+    display: flex;
+    margin: 20px 0 30px;
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    color: #fff;
+  }
+  .phase-bar div { padding: 15px; }
+  .phase-bar .p1 { background: #2196F3; flex: 1; }
+  .phase-bar .p2 { background: #ff9800; flex: 1; }
+  .phase-bar .p3 { background: #4caf50; flex: 1; }
+  .phase-detail { font-size: 12px; font-weight: normal; margin-top: 4px; }
+  .week-header {
+    background: #e3f2fd;
+    font-weight: bold;
+    font-size: 15px;
+  }
+  .week-header td { padding: 12px; color: #1565c0; }
+  .security-row { background: #fff8e1; }
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: bold;
+    color: #fff;
+  }
+  .badge-security { background: #e53935; }
+  .badge-practice { background: #4caf50; }
+  .badge-review { background: #ff9800; }
+  .check-table td:first-child { font-weight: bold; white-space: nowrap; }
+  .legend { font-size: 14px; }
+  .confidential {
+    text-align: center;
+    color: #999;
+    font-size: 13px;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+  }
+  @media (max-width: 768px) {
+    .slide { padding: 20px; margin: 10px; }
+    table { font-size: 12px; }
+    td, th { padding: 6px 8px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 表紙 -->
+<div class="slide">
+  <h1>AIレクチャー ロードマップ</h1>
+  <p style="font-size: 20px; color: #666; margin-bottom: 30px;">業務効率化・AI活用 習得プログラム（2026年4月〜6月）</p>
+
+  <table class="overview-table">
+    <tr><td>期間</td><td>2026年4月1日〜6月30日（3ヶ月間）</td></tr>
+    <tr><td>形式</td><td>毎日 9:15〜9:45（30分）朝礼形式</td></tr>
+    <tr><td>対象者</td><td>松草さん、中居さん、その他参加希望者</td></tr>
+    <tr><td>講師</td><td>磯貝</td></tr>
+    <tr><td>目標</td><td>AI活用による業務効率化の自走化</td></tr>
+  </table>
+
+  <h2>全体構成</h2>
+  <div class="phase-bar">
+    <div class="p1">Month 1（4月）<div class="phase-detail">基礎固め<br>INPUT 70% / 実践 30%</div></div>
+    <div class="p2">Month 2（5月）<div class="phase-detail">実務適用<br>INPUT 30% / 実践 70%</div></div>
+    <div class="p3">Month 3（6月）<div class="phase-detail">自走化・展開<br>INPUT 10% / 実践 90%</div></div>
+  </div>
+
+  <h2>30分の基本フォーマット</h2>
+  <table>
+    <tr><th>時間</th><th>内容</th><th>備考</th></tr>
+    <tr><td><strong>9:15〜9:20</strong>（5分）</td><td>前日の振り返り・質問回答</td><td>質問フォームからの投稿を優先対応</td></tr>
+    <tr><td><strong>9:20〜9:35</strong>（15分）</td><td>INPUT：本日のテーマ</td><td>ロードマップに沿った知識習得</td></tr>
+    <tr><td><strong>9:35〜9:45</strong>（10分）</td><td>OUTPUT：実践ワーク</td><td>実際にAIを触って課題に取り組む</td></tr>
+  </table>
+  <p style="color: #666; font-size: 14px;">※ Month 2以降はOUTPUTの比率を増やし、Month 3ではほぼ全てOUTPUT＋質問回答に移行。</p>
+</div>
+
+<!-- Month 1 -->
+<div class="slide">
+  <h1><span class="month-header month-1">Month 1</span> 基礎固め（4月）</h1>
+  <p style="font-size: 18px; color: #666;">テーマ：「AIを安全に・正しく使えるようになる」</p>
+
+  <h3>Week 1：AIの基本と安全な使い方</h3>
+  <table>
+    <tr><th>Day</th><th>テーマ</th><th>INPUT</th><th>OUTPUT</th><th>獲得スキル</th></tr>
+    <tr><td>1</td><td>オリエンテーション</td><td>ロードマップ共有、ゴール設定、AI活用の全体像</td><td>Claude/ChatGPTにアカウント設定</td><td>環境構築</td></tr>
+    <tr><td>2</td><td>AIとは何か</td><td>生成AIの仕組み（LLM）、できること・できないこと</td><td>簡単な質問をAIに投げてみる</td><td>基本操作</td></tr>
+    <tr class="security-row"><td>3</td><td>⚠️ AIリテラシー①</td><td><strong>顧客情報保護の原則</strong>：何を入力してはいけないか、情報流出の経路</td><td>NG例・OK例の判別ワーク</td><td>情報セキュリティ基礎</td></tr>
+    <tr class="security-row"><td>4</td><td>⚠️ AIリテラシー②</td><td><strong>事前準備と設定</strong>：履歴OFF設定、API利用とWeb利用の違い、社内ルールの策定</td><td>各自の設定確認・変更</td><td>セキュリティ設定</td></tr>
+    <tr class="security-row"><td>5</td><td>⚠️ AIリテラシー③</td><td><strong>リスク行動の具体例</strong>：個人情報の入力、ファイルアップロードの注意、ハルシネーション</td><td>リスク行動チェックリスト作成</td><td>リスク判断力</td></tr>
+  </table>
+
+  <h3>Week 2：プロンプトの基本</h3>
+  <table>
+    <tr><th>Day</th><th>テーマ</th><th>INPUT</th><th>OUTPUT</th><th>獲得スキル</th></tr>
+    <tr><td>6</td><td>プロンプトとは</td><td>良い指示と悪い指示の違い、具体的に書くことの重要性</td><td>同じ質問を曖昧→具体で比較</td><td>プロンプト設計の基本</td></tr>
+    <tr><td>7</td><td>役割を与える</td><td>「あなたは◯◯です」の効果、ペルソナ設定のコツ</td><td>会計事務所の業務でペルソナを設定</td><td>ロール設定</td></tr>
+    <tr><td>8</td><td>ステップバイステップ</td><td>複雑な作業を分解して指示する方法</td><td>月次処理の手順をAIに分解させる</td><td>段階的指示</td></tr>
+    <tr><td>9</td><td>出力形式の指定</td><td>表形式、箇条書き、マークダウン等の使い分け</td><td>同じ情報を3つの形式で出力させる</td><td>出力コントロール</td></tr>
+    <tr><td>10</td><td>実践まとめ</td><td>Week 1-2の総復習、質問タイム</td><td>自分の業務で1つAIを使ってみた結果を共有</td><td>総合力チェック</td></tr>
+  </table>
+
+  <h3>Week 3：文書作成・要約</h3>
+  <table>
+    <tr><th>Day</th><th>テーマ</th><th>INPUT</th><th>OUTPUT</th><th>獲得スキル</th></tr>
+    <tr><td>11</td><td>メール・文書の下書き</td><td>ビジネスメール作成のコツ、トーン調整</td><td>クライアント向けメールをAIで作成</td><td>文書作成スキル</td></tr>
+    <tr><td>12</td><td>文書の要約・整理</td><td>長文の要約、論点抽出のプロンプト</td><td>実際の通知文や規定の要約</td><td>要約スキル</td></tr>
+    <tr><td>13</td><td>議事録作成</td><td>文字起こし→議事録の変換フロー、Gamma活用</td><td>サンプル文字起こしから議事録を作成</td><td>議事録作成フロー</td></tr>
+    <tr><td>14</td><td>マニュアル作成</td><td>業務手順書のAI活用、フォーマット統一</td><td>自分の担当業務のマニュアルをAIで作成</td><td>マニュアル化スキル</td></tr>
+    <tr><td>15</td><td>実践まとめ</td><td>Week 3の総復習、成果共有</td><td>作成した文書の相互レビュー</td><td>品質チェック力</td></tr>
+  </table>
+
+  <h3>Week 4：データ処理の入門</h3>
+  <table>
+    <tr><th>Day</th><th>テーマ</th><th>INPUT</th><th>OUTPUT</th><th>獲得スキル</th></tr>
+    <tr><td>16</td><td>Excelとの連携</td><td>AIにExcelの関数・マクロを聞く方法</td><td>実際のExcel作業をAIに相談</td><td>Excel×AI連携</td></tr>
+    <tr><td>17</td><td>データの読み解き</td><td>数値データの分析依頼のコツ</td><td>簡単なPLデータをAIに分析させる</td><td>データ分析入門</td></tr>
+    <tr class="security-row"><td>18</td><td>⚠️ データ取扱い注意</td><td><strong>機密データのマスキング手法</strong>：顧客名→A社、金額の丸め等</td><td>実データのマスキング練習</td><td>データマスキング</td></tr>
+    <tr><td>19</td><td>Month 1 振り返り</td><td>1ヶ月の成長確認、進捗チェック</td><td>各自の「Before/After」発表</td><td>自己評価力</td></tr>
+    <tr><td>20</td><td>Month 2 準備</td><td>Month 2の予告、各自の重点課題設定</td><td>自分のOUTPUT目標を設定</td><td>目標設定</td></tr>
+  </table>
+</div>
+
+<!-- Month 2 -->
+<div class="slide">
+  <h1><span class="month-header month-2">Month 2</span> 実務適用（5月）</h1>
+  <p style="font-size: 18px; color: #666;">テーマ：「自分の業務にAIを組み込む」</p>
+
+  <h3>Week 5：会計業務×AI</h3>
+  <table>
+    <tr><th>Day</th><th>テーマ</th><th>INPUT</th><th>OUTPUT</th><th>獲得スキル</th></tr>
+    <tr><td>21</td><td>仕訳の効率化</td><td>仕訳入力の自動化アプローチ、AIへの仕訳相談</td><td>実際の仕訳パターンをAIに整理させる</td><td>仕訳効率化</td></tr>
+    <tr><td>22</td><td>税務判断の補助</td><td>AIに税務相談する際の注意点（あくまで補助）</td><td>税務Q&AをAIで下調べする練習</td><td>税務リサーチ補助</td></tr>
+    <tr><td>23</td><td>申告書類の下準備</td><td>チェックリスト作成、書類整理のAI活用</td><td>申告準備チェックリストをAIで作成</td><td>申告業務効率化</td></tr>
+    <tr><td>24</td><td>クライアント対応文書</td><td>報告書・レター作成のテンプレート化</td><td>クライアント向け月次報告の下書き作成</td><td>顧客対応文書</td></tr>
+    <tr><td>25</td><td>実践共有</td><td>各自のOUTPUT共有・相互レビュー</td><td>フィードバック＆改善</td><td>相互学習</td></tr>
+  </table>
+
+  <h3>Week 6：業務フロー改善</h3>
+  <table>
+    <tr><th>Day</th><th>テーマ</th><th>INPUT</th><th>OUTPUT</th><th>獲得スキル</th></tr>
+    <tr><td>26</td><td>業務の棚卸し</td><td>現状の業務フローを可視化するAI活用</td><td>自分の担当業務をAIでフロー図化</td><td>業務可視化</td></tr>
+    <tr><td>27</td><td>ボトルネック発見</td><td>AIに業務の非効率を分析させる方法</td><td>改善ポイントのリスト作成</td><td>課題発見力</td></tr>
+    <tr><td>28</td><td>定型業務の自動化</td><td>テンプレート化→AI活用で時間短縮する方法</td><td>1つの定型業務をAI活用で効率化</td><td>自動化スキル</td></tr>
+    <tr><td>29</td><td>ペーパーレス推進</td><td>紙→デジタルの移行プラン、スキャン→AI読み取り</td><td>紙の資料1つをデジタル化してみる</td><td>ペーパーレス実践</td></tr>
+    <tr><td>30</td><td>実践共有</td><td>改善成果の共有</td><td>時間短縮効果の計測</td><td>効果測定</td></tr>
+  </table>
+
+  <h3>Week 7：応用テクニック</h3>
+  <table>
+    <tr><th>Day</th><th>テーマ</th><th>INPUT</th><th>OUTPUT</th><th>獲得スキル</th></tr>
+    <tr><td>31</td><td>プロンプトの高度化</td><td>Few-shot、Chain of Thought、制約条件の設定</td><td>複雑な業務指示を高精度で出す練習</td><td>高度なプロンプト</td></tr>
+    <tr><td>32</td><td>ファイル活用</td><td>PDF・Excel読み込み、画像OCR活用</td><td>実際の書類をAIに読み込ませる</td><td>ファイル連携</td></tr>
+    <tr><td>33</td><td>プロジェクト機能</td><td>Claudeのプロジェクト機能、ナレッジ蓄積</td><td>自分の業務用プロジェクトを作成</td><td>ナレッジ管理</td></tr>
+    <tr><td>34</td><td>複数ツール連携</td><td>Claude×Gamma×Google等の連携ワークフロー</td><td>文字起こし→議事録→共有を一気通貫で実践</td><td>ツール連携</td></tr>
+    <tr><td>35</td><td>実践共有</td><td>Week 7の成果共有</td><td>ベストプラクティスの共有</td><td>知見の共有</td></tr>
+  </table>
+
+  <h3>Week 8：実務統合</h3>
+  <table>
+    <tr><th>Day</th><th>テーマ</th><th>INPUT</th><th>OUTPUT</th><th>獲得スキル</th></tr>
+    <tr><td>36</td><td>自分だけのAI活用術</td><td>各自の業務に最適化したプロンプト集作成</td><td>マイプロンプト集の作成</td><td>プロンプト資産化</td></tr>
+    <tr><td>37</td><td>チーム内展開</td><td>他のメンバーへの教え方、ナレッジ共有の方法</td><td>教え合いワーク</td><td>指導力</td></tr>
+    <tr class="security-row"><td>38</td><td>⚠️ セキュリティ再確認</td><td>2ヶ月間の運用を踏まえたリスク再チェック</td><td>セキュリティチェックリストの更新</td><td>セキュリティ運用</td></tr>
+    <tr><td>39</td><td>Month 2 振り返り</td><td>2ヶ月の成長確認、定量的な効果測定</td><td>Before/After発表</td><td>効果の可視化</td></tr>
+    <tr><td>40</td><td>Month 3 準備</td><td>Month 3の予告、自走化に向けた目標設定</td><td>自走化計画の策定</td><td>計画力</td></tr>
+  </table>
+</div>
+
+<!-- Month 3 -->
+<div class="slide">
+  <h1><span class="month-header month-3">Month 3</span> 自走化・展開（6月）</h1>
+  <p style="font-size: 18px; color: #666;">テーマ：「AIなしでは仕事しない、が当たり前になる」</p>
+
+  <table>
+    <tr><th>Week</th><th>テーマ</th><th>内容</th><th>実践ワーク</th><th>獲得スキル</th></tr>
+    <tr><td><strong>Week 9</strong><br>Day 41〜45</td><td>自走実践①</td><td>最小限のINPUT（質問回答のみ）</td><td>各自が自分の業務でAIを活用し、日々の成果を共有。磯貝はファシリテーターとしてアドバイス。</td><td>自走力</td></tr>
+    <tr><td><strong>Week 10</strong><br>Day 46〜50</td><td>自走実践②</td><td>必要に応じてスポットINPUT</td><td>決算業務、税務判断、クライアント提案等、難しい業務へのAI適用に挑戦。</td><td>応用力</td></tr>
+    <tr><td><strong>Week 11</strong><br>Day 51〜55</td><td>横展開準備</td><td>教える側になるための準備</td><td>自分のAI活用術をマニュアル化、レクチャー資料の作成。他メンバーへのミニレクチャー実践。</td><td>展開力・指導力</td></tr>
+    <tr><td><strong>Week 12</strong><br>Day 56〜58</td><td>総振り返り</td><td>全体の成果確認、今後の方向性</td><td>3ヶ月の成果発表（定量・定性）、ベストプラクティス集の完成</td><td>総合力</td></tr>
+    <tr class="security-row"><td>Day 59</td><td>セキュリティ最終チェック</td><td>3ヶ月の運用を踏まえた社内ルールの最終確定</td><td>AIセキュリティガイドラインの完成版</td><td>ガバナンス</td></tr>
+    <tr><td>Day 60</td><td>卒業・次フェーズへ</td><td>今後のAI活用方針、横展開計画の確定</td><td>次の3ヶ月の計画策定</td><td>持続的改善</td></tr>
+  </table>
+</div>
+
+<!-- 進捗管理 -->
+<div class="slide">
+  <h1>進捗管理シート</h1>
+
+  <h2>スキル習得チェックリスト</h2>
+  <table>
+    <tr><th>カテゴリ</th><th>スキル項目</th><th>レベル基準</th><th>松草さん</th><th>中居さん</th><th>時期</th></tr>
+    <tr><td rowspan="4"><strong>🔒 AIリテラシー</strong></td><td>顧客情報の取扱いルールを理解</td><td>説明できる</td><td>☐</td><td>☐</td><td>Week 1</td></tr>
+    <tr><td>セキュリティ設定の実施</td><td>自分で設定できる</td><td>☐</td><td>☐</td><td>Week 1</td></tr>
+    <tr><td>リスク行動の判別</td><td>NG/OKを即判断できる</td><td>☐</td><td>☐</td><td>Week 1</td></tr>
+    <tr><td>データマスキングの実践</td><td>実データで実行できる</td><td>☐</td><td>☐</td><td>Week 4</td></tr>
+    <tr><td rowspan="4"><strong>💬 プロンプト</strong></td><td>基本的な指示出し</td><td>意図通りの回答を得られる</td><td>☐</td><td>☐</td><td>Week 2</td></tr>
+    <tr><td>ロール設定</td><td>適切なペルソナを設定できる</td><td>☐</td><td>☐</td><td>Week 2</td></tr>
+    <tr><td>出力形式の制御</td><td>表・箇条書き等を指定できる</td><td>☐</td><td>☐</td><td>Week 2</td></tr>
+    <tr><td>高度なプロンプト</td><td>Few-shot等を使いこなせる</td><td>☐</td><td>☐</td><td>Week 7</td></tr>
+    <tr><td rowspan="4"><strong>📝 文書作成</strong></td><td>メール下書き</td><td>AIで業務メールを作成できる</td><td>☐</td><td>☐</td><td>Week 3</td></tr>
+    <tr><td>要約・整理</td><td>長文を的確に要約できる</td><td>☐</td><td>☐</td><td>Week 3</td></tr>
+    <tr><td>議事録作成</td><td>文字起こし→議事録の一気通貫</td><td>☐</td><td>☐</td><td>Week 3</td></tr>
+    <tr><td>マニュアル作成</td><td>業務手順書を作成できる</td><td>☐</td><td>☐</td><td>Week 3</td></tr>
+    <tr><td rowspan="2"><strong>📊 データ処理</strong></td><td>Excel関数のAI相談</td><td>AIに関数を聞いて活用できる</td><td>☐</td><td>☐</td><td>Week 4</td></tr>
+    <tr><td>データ分析</td><td>数値データの読み解きを依頼できる</td><td>☐</td><td>☐</td><td>Week 4</td></tr>
+    <tr><td rowspan="4"><strong>🏢 業務適用</strong></td><td>仕訳効率化</td><td>AIを仕訳業務に活用できる</td><td>☐</td><td>☐</td><td>Week 5</td></tr>
+    <tr><td>業務フロー改善</td><td>ボトルネックを発見・改善できる</td><td>☐</td><td>☐</td><td>Week 6</td></tr>
+    <tr><td>定型業務の自動化</td><td>1つ以上の業務を自動化済み</td><td>☐</td><td>☐</td><td>Week 6</td></tr>
+    <tr><td>ペーパーレス化</td><td>紙→デジタル移行を実行できる</td><td>☐</td><td>☐</td><td>Week 6</td></tr>
+    <tr><td rowspan="3"><strong>🚀 自走・展開</strong></td><td>マイプロンプト集の作成</td><td>自分専用のプロンプトを保有</td><td>☐</td><td>☐</td><td>Week 8</td></tr>
+    <tr><td>他メンバーへの指導</td><td>AIの使い方を教えられる</td><td>☐</td><td>☐</td><td>Week 11</td></tr>
+    <tr><td>横展開マニュアル作成</td><td>他事務所向け資料を作成できる</td><td>☐</td><td>☐</td><td>Week 11</td></tr>
+  </table>
+
+  <h3>進捗の凡例</h3>
+  <table class="legend">
+    <tr><th>マーク</th><th>意味</th></tr>
+    <tr><td>☐</td><td>未着手</td></tr>
+    <tr><td>△</td><td>学習中（INPUTは理解したがOUTPUTが不十分）</td></tr>
+    <tr><td>◯</td><td>基本習得（指導ありでできる）</td></tr>
+    <tr><td>◎</td><td>自走可能（一人でできる）</td></tr>
+    <tr><td>★</td><td>他者に教えられるレベル</td></tr>
+  </table>
+</div>
+
+<!-- セキュリティ -->
+<div class="slide">
+  <h1>⚠️ AIリテラシー：顧客情報保護ガイドライン</h1>
+
+  <h2>絶対にやってはいけないこと（NG行動）</h2>
+  <div class="danger-box">
+    <p style="margin-bottom: 0;"><strong>以下の行動は情報漏洩のリスクがあります。必ず守ってください。</strong></p>
+  </div>
+  <table>
+    <tr><th>No.</th><th>NG行動</th><th>リスク</th><th>対策</th></tr>
+    <tr><td>1</td><td>顧客名・個人名をそのまま入力</td><td>AIの学習データに取り込まれる可能性</td><td>「A社」「甲」等に置換してから入力</td></tr>
+    <tr><td>2</td><td>マイナンバー・口座番号等の入力</td><td>個人情報保護法違反のリスク</td><td>絶対に入力しない。必要なら構造だけ聞く</td></tr>
+    <tr><td>3</td><td>確定申告書・決算書をそのままアップロード</td><td>機密情報の流出リスク</td><td>数値をマスキングするか、構造のみ共有</td></tr>
+    <tr><td>4</td><td>クライアントのパスワード・認証情報の入力</td><td>不正アクセスの要因になりうる</td><td>入力しない。別途安全な方法で管理</td></tr>
+    <tr><td>5</td><td>チャット履歴をONにしたまま機密情報を入力</td><td>履歴として残り続けるリスク</td><td>機密情報を扱う際は必ず履歴OFFまたはAPI利用</td></tr>
+  </table>
+
+  <h2>事前準備チェックリスト</h2>
+  <table>
+    <tr><th>No.</th><th>準備項目</th><th>詳細</th><th>完了</th></tr>
+    <tr><td>1</td><td>AI利用に関する社内ルールの策定</td><td>何を入力してよいか/いけないかの基準を明文化</td><td>☐</td></tr>
+    <tr><td>2</td><td>チャット履歴の設定確認</td><td>各ツールで履歴OFF設定またはAPI利用の確認</td><td>☐</td></tr>
+    <tr><td>3</td><td>データマスキングルールの策定</td><td>顧客名→記号、金額の丸め方等のルール化</td><td>☐</td></tr>
+    <tr><td>4</td><td>利用ツールの選定と契約確認</td><td>法人契約（データが学習に使われない契約か）</td><td>☐</td></tr>
+    <tr><td>5</td><td>インシデント対応フローの策定</td><td>万が一情報を入力してしまった場合の対処法</td><td>☐</td></tr>
+    <tr><td>6</td><td>クライアントへの説明資料の準備</td><td>AI活用について事前に説明・同意を得る体制</td><td>☐</td></tr>
+  </table>
+
+  <h2>質問フォームについて</h2>
+  <table>
+    <tr><th>項目</th><th>内容</th></tr>
+    <tr><td><strong>投稿方法</strong></td><td>Google フォーム or LINEグループでの事前投稿</td></tr>
+    <tr><td><strong>投稿期限</strong></td><td>前日の18:00まで（翌朝のレクチャーで回答）</td></tr>
+    <tr><td><strong>回答方式</strong></td><td>レクチャー冒頭5分で優先回答。時間内に回答しきれない場合は議事録に追記</td></tr>
+    <tr><td><strong>匿名対応</strong></td><td>質問は匿名でも可（聞きにくいことも気軽に）</td></tr>
+  </table>
+
+  <div class="confidential">CONFIDENTIAL — © 2026 株式会社磯貝　無断転用禁止</div>
+</div>
+
+</body>
+</html>
