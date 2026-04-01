@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIを使ってみよう — AIレクチャー 第2回</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --border: #334155;
+    --text: #e2e8f0;
+    --text2: #94a3b8;
+    --blue: #3b82f6;
+    --green: #10b981;
+    --yellow: #f59e0b;
+    --red: #ef4444;
+    --purple: #a855f7;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  .slide {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 32px;
+    border-bottom: 2px solid var(--border);
+    position: relative;
+  }
+
+  .slide-number {
+    position: absolute;
+    top: 20px;
+    right: 32px;
+    font-size: 13px;
+    color: var(--text2);
+  }
+
+  h1 {
+    font-size: 42px;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 16px;
+    letter-spacing: -1px;
+  }
+  h1 .accent { color: var(--yellow); }
+  h1 .accent-blue { color: var(--blue); }
+
+  h2 {
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 32px;
+    color: #fff;
+  }
+
+  .subtitle {
+    font-size: 18px;
+    color: var(--text2);
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .tag {
+    display: inline-block;
+    background: rgba(59,130,246,0.15);
+    border: 1px solid var(--blue);
+    color: var(--blue);
+    font-size: 13px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+  }
+
+  .title-icon {
+    font-size: 64px;
+    margin-bottom: 24px;
+  }
+  .title-meta {
+    margin-top: 32px;
+    font-size: 14px;
+    color: var(--text2);
+    text-align: center;
+  }
+
+  /* SURVEY */
+  .survey-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 800px;
+    width: 100%;
+  }
+  .survey-card {
+    background: var(--card);
+    border: 2px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    text-align: center;
+    transition: all 0.2s;
+  }
+  .survey-card .survey-icon { font-size: 40px; margin-bottom: 12px; }
+  .survey-card .survey-label {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .survey-card .survey-detail {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.6;
+  }
+  .survey-card.s-green { border-color: var(--green); }
+  .survey-card.s-blue { border-color: var(--blue); }
+  .survey-card.s-yellow { border-color: var(--yellow); }
+  .survey-card.s-purple { border-color: var(--purple); }
+
+  /* GOAL */
+  .goal-list {
+    max-width: 700px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .goal-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .goal-num {
+    font-size: 32px;
+    font-weight: 800;
+    flex-shrink: 0;
+    width: 48px;
+    text-align: center;
+  }
+  .goal-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+  }
+  .goal-sub {
+    font-size: 13px;
+    color: var(--text2);
+    margin-top: 4px;
+  }
+
+  /* PROMPT PRINCIPLES */
+  .principle-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 900px;
+    width: 100%;
+    margin-bottom: 32px;
+  }
+  .principle-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .principle-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+  }
+  .principle-card.p-green::before { background: var(--green); }
+  .principle-card.p-blue::before { background: var(--blue); }
+  .principle-card.p-purple::before { background: var(--purple); }
+  .principle-card .p-num {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .principle-card .p-title {
+    font-size: 20px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+  .principle-card .p-example {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.7;
+    text-align: left;
+    background: rgba(255,255,255,0.03);
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+  .principle-card .p-example code {
+    color: var(--yellow);
+    font-family: inherit;
+    font-weight: 600;
+  }
+
+  /* COMPARE */
+  .compare-box {
+    max-width: 800px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .compare-side {
+    border-radius: 16px;
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .compare-side::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+  }
+  .compare-side.bad {
+    background: var(--card);
+    border: 2px solid var(--red);
+  }
+  .compare-side.bad::before { background: var(--red); }
+  .compare-side.good {
+    background: var(--card);
+    border: 2px solid var(--green);
+    box-shadow: 0 0 20px rgba(16,185,129,0.1);
+  }
+  .compare-side.good::before { background: var(--green); }
+  .compare-label {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .compare-prompt {
+    font-size: 15px;
+    line-height: 1.8;
+    padding: 16px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+
+  /* PATTERNS */
+  .pattern-list {
+    max-width: 800px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .pattern-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .pattern-icon {
+    font-size: 32px;
+    flex-shrink: 0;
+    width: 48px;
+    text-align: center;
+  }
+  .pattern-body { flex: 1; }
+  .pattern-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+  .pattern-desc {
+    font-size: 13px;
+    color: var(--text2);
+  }
+  .pattern-example {
+    font-size: 12px;
+    color: var(--yellow);
+    margin-top: 4px;
+    font-style: italic;
+  }
+
+  /* MESSAGE */
+  .message-box {
+    max-width: 700px;
+    background: var(--card);
+    border: 2px solid var(--yellow);
+    border-radius: 16px;
+    padding: 48px;
+    text-align: center;
+    box-shadow: 0 0 40px rgba(245,158,11,0.1);
+  }
+  .message-box .icon { font-size: 48px; margin-bottom: 20px; }
+  .message-box .main-msg {
+    font-size: 28px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 16px;
+    line-height: 1.4;
+  }
+  .message-box .sub-msg {
+    font-size: 16px;
+    color: var(--text2);
+    line-height: 1.8;
+  }
+  .message-box .sub-msg strong {
+    color: var(--yellow);
+  }
+
+  .action-list {
+    max-width: 600px;
+    width: 100%;
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .action-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+  }
+  .action-check {
+    color: var(--green);
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  /* NAV */
+  .nav {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    gap: 8px;
+    z-index: 100;
+  }
+  .nav button {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .nav button:hover { background: var(--border); }
+
+  /* MOBILE */
+  @media screen and (max-width: 768px) {
+    .slide { padding: 32px 16px; min-height: auto; padding-top: 60px; padding-bottom: 60px; }
+    h1 { font-size: 28px; }
+    h2 { font-size: 22px; }
+    .survey-grid { grid-template-columns: 1fr; }
+    .principle-grid { grid-template-columns: 1fr; }
+    .compare-box { grid-template-columns: 1fr; }
+    .message-box { padding: 32px 20px; }
+    .message-box .main-msg { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1: TITLE -->
+<div class="slide">
+  <span class="slide-number">1 / 6</span>
+  <div class="title-icon">🛠</div>
+  <h1>AIを<span class="accent">使ってみよう</span></h1>
+  <div class="subtitle">AIレクチャー 第2回 — 実践入門</div>
+  <div class="title-meta">
+    2026年4月2日<br>
+    磯貝
+  </div>
+</div>
+
+<!-- SLIDE 2: SURVEY -->
+<div class="slide">
+  <span class="slide-number">2 / 6</span>
+  <span class="tag">Check</span>
+  <h2>まず確認 — 皆さんの<span style="color: var(--yellow);">AI経験</span></h2>
+
+  <div class="survey-grid">
+    <div class="survey-card s-green">
+      <div class="survey-icon">🙋</div>
+      <div class="survey-label">ChatGPT / Claude / Gemini<br>使ったことある？</div>
+      <div class="survey-detail">どれか1つでもOK<br>仕事でもプライベートでも</div>
+    </div>
+
+    <div class="survey-card s-blue">
+      <div class="survey-icon">💼</div>
+      <div class="survey-label">業務で使っている？</div>
+      <div class="survey-detail">メール下書き、調べもの、<br>資料作成など何でも</div>
+    </div>
+
+    <div class="survey-card s-yellow">
+      <div class="survey-icon">💡</div>
+      <div class="survey-label">使ったことある人<br>→ どんな場面で？</div>
+      <div class="survey-detail">うまくいった？ いかなかった？<br>教えてください</div>
+    </div>
+
+    <div class="survey-card s-purple">
+      <div class="survey-icon">🤔</div>
+      <div class="survey-label">使ったことない人<br>→ 何がハードル？</div>
+      <div class="survey-detail">何を聞けばいいか分からない？<br>始め方が分からない？</div>
+    </div>
+  </div>
+
+  <div style="margin-top: 32px; padding: 16px 24px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; max-width: 600px;">
+    <div style="font-size: 14px; color: var(--text2); text-align: center;">
+      ここで皆さんの現在地を把握して、<br>
+      <strong style="color: #fff;">今日のレクチャーのレベル感を合わせます</strong>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 3: TODAY'S GOAL -->
+<div class="slide">
+  <span class="slide-number">3 / 6</span>
+  <span class="tag">Today's Goal</span>
+  <h2>今日の<span style="color: var(--green);">ゴール</span></h2>
+
+  <div class="goal-list">
+    <div class="goal-item">
+      <div class="goal-num" style="color: var(--green);">1</div>
+      <div>
+        <div class="goal-text">AIには「聞き方」がある</div>
+        <div class="goal-sub">プロンプトの基本3原則を知る</div>
+      </div>
+    </div>
+    <div class="goal-item">
+      <div class="goal-num" style="color: var(--blue);">2</div>
+      <div>
+        <div class="goal-text">実際にAIと会話してみる</div>
+        <div class="goal-sub">良い聞き方 vs 悪い聞き方の違いを体感する</div>
+      </div>
+    </div>
+    <div class="goal-item">
+      <div class="goal-num" style="color: var(--yellow);">3</div>
+      <div>
+        <div class="goal-text">「こんなことにも使えるんだ」を体感する</div>
+        <div class="goal-sub">すぐに業務で使える5つのパターンを紹介</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 4: PROMPT PRINCIPLES + COMPARE -->
+<div class="slide">
+  <span class="slide-number">4 / 6</span>
+  <span class="tag">Core Skill</span>
+  <h2>プロンプトの<span style="color: var(--yellow);">3原則</span></h2>
+
+  <div class="principle-grid">
+    <div class="principle-card p-green">
+      <div class="p-num" style="color: var(--green);">原則 1</div>
+      <div class="p-title">役割を与える</div>
+      <div class="p-example">
+        <code>「あなたは会計の専門家です」</code><br><br>
+        AIに立場を指定すると、その分野の知識を優先して回答してくれる
+      </div>
+    </div>
+
+    <div class="principle-card p-blue">
+      <div class="p-num" style="color: var(--blue);">原則 2</div>
+      <div class="p-title">具体的に伝える</div>
+      <div class="p-example">
+        <code>「3つのポイントで要約して」</code><br><br>
+        数、形式、範囲を指定するほど、欲しい回答に近づく
+      </div>
+    </div>
+
+    <div class="principle-card p-purple">
+      <div class="p-num" style="color: var(--purple);">原則 3</div>
+      <div class="p-title">条件をつける</div>
+      <div class="p-example">
+        <code>「初心者向けに」「箇条書きで」「200文字以内で」</code><br><br>
+        対象者・フォーマット・長さを指定する
+      </div>
+    </div>
+  </div>
+
+  <!-- 比較 -->
+  <div class="compare-box">
+    <div class="compare-side bad">
+      <div class="compare-label" style="color: var(--red);">NG — ざっくりすぎる</div>
+      <div class="compare-prompt">
+        確定申告について教えて
+      </div>
+      <div style="margin-top: 12px; font-size: 13px; color: var(--text2);">
+        → 範囲が広すぎて、一般的な説明が返ってくる
+      </div>
+    </div>
+
+    <div class="compare-side good">
+      <div class="compare-label" style="color: var(--green);">OK — 3原則を使う</div>
+      <div class="compare-prompt">
+        <span style="color: var(--green);">あなたは税理士です。</span><br>
+        個人事業主の確定申告で、<span style="color: var(--blue);">初心者が見落としやすいポイントを3つ</span>、<span style="color: var(--purple);">箇条書きで</span>教えてください
+      </div>
+      <div style="margin-top: 12px; font-size: 13px; color: var(--text2);">
+        → 実務で使える具体的な回答が返ってくる
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 5: 5 PATTERNS -->
+<div class="slide">
+  <span class="slide-number">5 / 6</span>
+  <span class="tag">Practice</span>
+  <h2>すぐに使える<span style="color: var(--green);">5つの活用パターン</span></h2>
+
+  <div class="pattern-list">
+    <div class="pattern-item">
+      <div class="pattern-icon">📋</div>
+      <div class="pattern-body">
+        <div class="pattern-title">1. 要約</div>
+        <div class="pattern-desc">長い文章やメールを要約させる</div>
+        <div class="pattern-example">「以下のメールを3行で要約して」</div>
+      </div>
+    </div>
+
+    <div class="pattern-item">
+      <div class="pattern-icon">✍️</div>
+      <div class="pattern-body">
+        <div class="pattern-title">2. 下書き</div>
+        <div class="pattern-desc">メール・案内文の下書きを作らせる</div>
+        <div class="pattern-example">「クライアントへの月次報告メールの下書きを作って」</div>
+      </div>
+    </div>
+
+    <div class="pattern-item">
+      <div class="pattern-icon">🔍</div>
+      <div class="pattern-body">
+        <div class="pattern-title">3. 調べもの</div>
+        <div class="pattern-desc">制度や用語の意味を聞く</div>
+        <div class="pattern-example">「インボイス制度の経過措置を簡潔に教えて」</div>
+      </div>
+    </div>
+
+    <div class="pattern-item">
+      <div class="pattern-icon">✅</div>
+      <div class="pattern-body">
+        <div class="pattern-title">4. チェック</div>
+        <div class="pattern-desc">自分の文章の誤字・わかりにくい点を指摘させる</div>
+        <div class="pattern-example">「以下の文章で、誤字やわかりにくい表現を指摘して」</div>
+      </div>
+    </div>
+
+    <div class="pattern-item">
+      <div class="pattern-icon">💡</div>
+      <div class="pattern-body">
+        <div class="pattern-title">5. アイデア出し</div>
+        <div class="pattern-desc">提案や改善案を出させる</div>
+        <div class="pattern-example">「業務改善の提案を5つ出して」</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 6: SUMMARY -->
+<div class="slide">
+  <span class="slide-number">6 / 6</span>
+
+  <div class="message-box">
+    <div class="icon">🚀</div>
+    <div class="main-msg">
+      明日から<span style="color: var(--yellow);">1日1回</span><br>
+      AIに聞いてみよう
+    </div>
+    <div class="sub-msg">
+      うまくいかなくて当たり前。<br>
+      <strong>聞き方を変えてみる</strong>のがコツ。<br><br>
+      試した結果はChatworkで共有してください。<br>
+      みんなのナレッジになります。
+    </div>
+  </div>
+
+  <div class="action-list">
+    <div class="action-item">
+      <div class="action-check">&#10003;</div>
+      <div>まずは1日1回、何でもいいからAIに聞いてみる</div>
+    </div>
+    <div class="action-item">
+      <div class="action-check">&#10003;</div>
+      <div>「こういう時にAI使えないかな？」と考える癖をつける</div>
+    </div>
+    <div class="action-item">
+      <div class="action-check">&#10003;</div>
+      <div>うまくいかなかったら、聞き方を変えてみる</div>
+    </div>
+    <div class="action-item">
+      <div class="action-check">&#10003;</div>
+      <div>質問や試した結果はChatworkで共有</div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav">
+  <button onclick="scrollPrev()">&#9650;</button>
+  <button onclick="scrollNext()">&#9660;</button>
+</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+let current = 0;
+
+function scrollTo(i) {
+  if (i >= 0 && i < slides.length) {
+    current = i;
+    slides[i].scrollIntoView({ behavior: 'smooth' });
+  }
+}
+function scrollNext() { scrollTo(current + 1); }
+function scrollPrev() { scrollTo(current - 1); }
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); scrollNext(); }
+  if (e.key === 'ArrowUp') { e.preventDefault(); scrollPrev(); }
+});
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      current = Array.from(slides).indexOf(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+slides.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
