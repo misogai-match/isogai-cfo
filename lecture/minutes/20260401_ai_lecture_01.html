@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第1回 AIレクチャー 議事録 — 2026/4/1</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --card2: #263347;
+    --border: #334155;
+    --text: #e2e8f0;
+    --text2: #94a3b8;
+    --blue: #3b82f6;
+    --green: #10b981;
+    --yellow: #f59e0b;
+    --purple: #a855f7;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.8;
+  }
+
+  .header {
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    padding: 32px;
+  }
+  .header-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .back-link {
+    display: inline-block;
+    color: var(--blue);
+    text-decoration: none;
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+  .back-link:hover { text-decoration: underline; }
+  .header h1 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .header-meta {
+    font-size: 13px;
+    color: var(--text2);
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 32px 24px;
+  }
+
+  .section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--yellow);
+    margin: 20px 0 8px 0;
+  }
+  h3:first-child { margin-top: 0; }
+
+  p { margin-bottom: 12px; font-size: 14px; }
+
+  ul {
+    margin: 8px 0 16px 20px;
+    font-size: 14px;
+  }
+  li { margin-bottom: 6px; }
+
+  .highlight {
+    background: rgba(245,158,11,0.1);
+    border-left: 3px solid var(--yellow);
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+
+  .action-item {
+    background: rgba(59,130,246,0.1);
+    border-left: 3px solid var(--blue);
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    margin: 8px 0;
+    font-size: 14px;
+  }
+  .action-item .label {
+    font-weight: 700;
+    color: var(--blue);
+    font-size: 12px;
+    margin-bottom: 4px;
+  }
+
+  .transcript-section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .transcript-toggle {
+    width: 100%;
+    background: var(--card);
+    border: none;
+    color: #fff;
+    padding: 20px 24px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid var(--border);
+    font-family: inherit;
+  }
+  .transcript-toggle:hover { background: var(--card2); }
+  .transcript-toggle .arrow {
+    margin-left: auto;
+    transition: transform 0.3s;
+    font-size: 14px;
+    color: var(--text2);
+  }
+  .transcript-toggle.open .arrow { transform: rotate(90deg); }
+  .transcript-body {
+    display: none;
+    padding: 24px;
+  }
+  .transcript-body.open { display: block; }
+  .ts {
+    color: var(--blue);
+    font-size: 12px;
+    font-weight: 600;
+    margin: 20px 0 8px 0;
+  }
+  .ts:first-child { margin-top: 0; }
+  .speaker {
+    font-weight: 700;
+    color: var(--green);
+    font-size: 13px;
+  }
+  .utterance {
+    font-size: 13px;
+    color: var(--text2);
+    margin-bottom: 12px;
+    line-height: 1.7;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 12px;
+    color: var(--text2);
+    border-top: 1px solid var(--border);
+  }
+
+  @media screen and (max-width: 768px) {
+    .header { padding: 24px 16px; }
+    .header h1 { font-size: 20px; }
+    .main { padding: 20px 12px; }
+    .section { padding: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <a href="../index.html" class="back-link">&larr; ライブラリに戻る</a>
+    <h1>第1回 AIレクチャー 議事録</h1>
+    <div class="header-meta">
+      <span>2026年4月1日（火）09:15 - 09:45</span>
+      <span>定例Mtg for BS & AIレクチャー</span>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- 概要 -->
+  <div class="section">
+    <div class="section-title">概要</div>
+    <p>CFOの磯貝政文の提案により、鈴木先生の事務所（誠和会計）にて3ヶ月間のAIテスト導入が決定。毎朝30分のレクチャーとChatworkによるコミュニケーションを通じて、業務効率化と人間力の向上を目指す。</p>
+    <p>初回は「なぜ今AIなのか」をテーマに、AIの活用方針と目指す姿について共有した。</p>
+  </div>
+
+  <!-- 参加者 -->
+  <div class="section">
+    <div class="section-title">参加者</div>
+    <ul>
+      <li>磯貝政文（CFO / レクチャー担当）</li>
+      <li>鈴木先生（誠和会計）</li>
+      <li>松草さん（ブルーストーン社）</li>
+      <li>誠和会計メンバー</li>
+    </ul>
+  </div>
+
+  <!-- 議題と内容 -->
+  <div class="section">
+    <div class="section-title">議題と内容</div>
+
+    <h3>1. AI活用の背景と提案</h3>
+    <p>磯貝は自身の業務効率化経験から、AIの実用性の高さを実感。鈴木先生やブルーストーン社の松草さん・中井さんへのレクチャーで効果的に使えそうだと確認できたため、鈴木先生の事務所での3ヶ月間のAIテスト導入を提案した。</p>
+
+    <h3>2. レクチャーの進め方</h3>
+    <ul>
+      <li>毎朝 9:15〜9:45 の30分間（冒頭5分はブルーストーン社定例のため、実質25分）</li>
+      <li>連絡・質疑応答ツールとして Chatwork を使用</li>
+      <li>質問はChatworkに事前投稿 → レクチャー中に集中対応</li>
+      <li>議事録はAIが自動作成し、終了後10〜15分で共有</li>
+    </ul>
+
+    <h3>3. AIによる能力向上</h3>
+    <div class="highlight">
+      <strong>磯貝の見解：</strong>普通の人がAIを使うと、東大卒レベルの優秀な人に容易になれる。優秀な人がAIを使えば無限大にタスクをこなせる。
+    </div>
+    <ul>
+      <li>税理士の事例：1人で60社分の申告業務をAI活用でこなしている</li>
+      <li>AIの活用効果は複利のように作用し、指数関数的に能力が向上する</li>
+      <li>基礎を固めて応用につなげることで、1人が5人分以上の業務をこなすことも可能</li>
+    </ul>
+
+    <h3>4. 開始のタイミングの重要性</h3>
+    <ul>
+      <li>生成AIの初期リリース（2022年 ChatGPT）と比較して、現在は非常に便利になっている</li>
+      <li>若手・中堅でも75%がAI未使用、経営者も2割程度しか活用していない</li>
+      <li>今始めれば大多数に対して大きな差をつけられる</li>
+      <li>半年後に始めた人からすると、ほぼ追いつけないレベルになる</li>
+    </ul>
+
+    <h3>5. AI時代の人間力</h3>
+    <div class="highlight">
+      <strong>目指す姿：</strong>「AIの皮をかぶった優秀な人間」— 対面するのは人間、後ろでAIを活用している状態
+    </div>
+    <ul>
+      <li><strong>AIが得意なこと：</strong>分析、作成、リサーチ、入力 → AIに任せる</li>
+      <li><strong>人間にしかできないこと：</strong>課題発見、判断、信頼関係の構築 → 人間が磨く</li>
+      <li>クライアントの社長たちと対話する時間を増やすことが最も重要</li>
+      <li>AIを「相棒」として活用する</li>
+    </ul>
+
+    <h3>6. 会計事務所での活用意義</h3>
+    <p>会計事務所は多くのクライアントと接点があるからこそ、AIで業務を効率化し、社長たちとの対話時間を確保することが価値につながる。</p>
+  </div>
+
+  <!-- ネクストアクション -->
+  <div class="section">
+    <div class="section-title">ネクストアクション</div>
+    <div class="action-item">
+      <div class="label">鈴木先生</div>
+      Chatworkの招待をメンバーに送付する
+    </div>
+    <div class="action-item">
+      <div class="label">全員</div>
+      事前にChatworkにて質問を提出する
+    </div>
+    <div class="action-item">
+      <div class="label">磯貝</div>
+      第2回レクチャー（4/2）の準備 — AIを実際に触る実践ワーク
+    </div>
+  </div>
+
+  <!-- 文字起こし -->
+  <div class="transcript-section">
+    <button class="transcript-toggle" onclick="toggleTranscript(this)">
+      文字起こし（全文）
+      <span class="arrow">&#9654;</span>
+    </button>
+    <div class="transcript-body">
+
+      <div class="ts">00:00:00</div>
+      <p class="utterance"><span class="speaker">磯貝政文：</span>じゃあ今全体的…（画面共有の調整）…えっと、皆様おはようございます。初めまして。私、以前からブルーストーンでCFOをやっておりました。ご縁があって、4月からブルーストーン社のサポートを引き続きさせていただくのと、AIについて最近色々と話題になっていますが、私自身も非常に怠け者でして、色々楽にできないかなと思ってAIを触っていたら、思いのほか非常に使えるなということが分かりました。</p>
+
+      <div class="ts">00:03:54</div>
+      <p class="utterance"><span class="speaker">磯貝政文：</span>ブルーストーン社の松草さんや中井さんに軽くレクチャーさせていただいたところ、いい感じで使っていただけそうだなと思ったので、鈴木先生のところの事務所の業務効率化やクライアントへの価値提供のため、3ヶ月間のテスト導入をご提案させていただきました。</p>
+
+      <div class="ts">00:05:21</div>
+      <p class="utterance"><span class="speaker">磯貝政文：</span>レクチャーは毎朝9時15分から45分の30分間。冒頭5分はブルーストーン社の定例で使うので、実質25分間です。連絡ツールはChatworkを契約しました。質問はChatworkに事前に入れておいていただければ集中的に対応します。</p>
+
+      <div class="ts">00:06:53</div>
+      <p class="utterance"><span class="speaker">磯貝政文：</span>議事録は自動で作成され、終了後10分〜15分ほどで共有されます。AIの有用性を体感していただければと思っています。</p>
+      <p class="utterance"><span class="speaker">誠和会計：</span>画面が共有されていない状態でした。</p>
+      <p class="utterance"><span class="speaker">磯貝政文：</span>（画面共有の再設定）</p>
+
+      <div class="ts">00:07:53</div>
+      <p class="utterance"><span class="speaker">磯貝政文：</span>AIを使ってみて感じるのは、優秀な人がAIを使ったら本当にすごい。何人分ものタスクをこなせる。税理士の方で1人で60社の申告をこなしている事例も聞いています。一方で、普通の人がAIを使うと、東大卒レベルの優秀な人にも楽勝でなれるというのが私の使った感想です。</p>
+
+      <div class="ts">00:09:41</div>
+      <p class="utterance"><span class="speaker">磯貝政文：</span>普通の人がAIを活用して全体的に優秀な人になり、業務を効率化して楽にすることを目指したい。能力75の優秀な人は限界突破で無限大に。能力40の普通の人もAIを使えば優秀な人レベル以上になれる。</p>
+
+      <div class="ts">00:11:04</div>
+      <p class="utterance"><span class="speaker">磯貝政文：</span>AIの活用効果は複利のように作用します。日常業務の効率化を基に応用が広がり、指数関数的に能力が向上する。AIは人間より指示を忘れずに遂行する能力が高いので、基礎を固めて応用につなげれば、1人で5人分以上の業務も可能です。</p>
+
+      <div class="ts">00:12:37</div>
+      <p class="utterance"><span class="speaker">磯貝政文：</span>2022年のChatGPT初期リリースと比較して、今は非常に便利になっています。日経の記事にもありましたが、若手・中堅でも75%がAI未使用。今始めれば大多数に大きな差をつけられます。半年後に始めた人からすると、もうほぼ追いつけないレベルになる。</p>
+
+      <div class="ts">00:14:20</div>
+      <p class="utterance"><span class="speaker">磯貝政文：</span>経営者も2割ぐらいしか使っていない状況。今始めるだけで3/4以上に差がつけられる。複利が効くので、今日始めておくと本当に大逆転ができる。1年後にはAIは当たり前になっていて、かなりの部分をAIが自律的に業務をやっている世界になる。</p>
+
+      <div class="ts">00:16:07</div>
+      <p class="utterance"><span class="speaker">磯貝政文：</span>AI時代こそ人間力が問われる。クライアントは会計事務所の人間に相談したいと思う。皆さんには「AIの皮をかぶった優秀な人間」になってほしい。分析・作成・リサーチはAIに任せ、人間にしかできない課題発見・判断・信頼関係の構築を磨くことに集中すべき。</p>
+
+      <div class="ts">00:18:10</div>
+      <p class="utterance"><span class="speaker">磯貝政文：</span>クライアントの社長たちと対面する時間、お話する時間、相談する時間を増やしていただきたい。AIを相棒として使う。これが一番伝えたかったこと。</p>
+
+      <div class="ts">00:19:43</div>
+      <p class="utterance"><span class="speaker">磯貝政文：</span>会計事務所は色々なお客さんと仕事をされているからこそ、知見や接点が物を言う。社長たちと話す時間が取れないのが現状。AIで補って対話の時間を増やしていただきたい。今日はAIを使ってどうなるのかという世界観をお話しさせていただきました。質問やご意見があればChatworkでいただければと思います。</p>
+
+      <p class="utterance"><span class="speaker">鈴木先生（誠和会計）：</span>3ヶ月間の30分の時間でAIの学習を進めて、AIがインフラとして使われるようになる — パソコンと同じレベルになってくると予想しているので、この機会にしっかり学習して業務で使えるように準備していきましょう。</p>
+
+      <div class="ts">00:22:18 終了</div>
+
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  AIレクチャー 議事録 — 磯貝政文 | Powered by Claude Code
+</div>
+
+<script>
+function toggleTranscript(btn) {
+  btn.classList.toggle('open');
+  const body = btn.nextElementSibling;
+  body.classList.toggle('open');
+}
+</script>
+
+</body>
+</html>
