@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>一緒にやってみよう — AIレクチャー 第3回</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --border: #334155;
+    --text: #e2e8f0;
+    --text2: #94a3b8;
+    --blue: #3b82f6;
+    --green: #10b981;
+    --yellow: #f59e0b;
+    --red: #ef4444;
+    --purple: #a855f7;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  .slide {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 32px;
+    border-bottom: 2px solid var(--border);
+    position: relative;
+  }
+
+  .slide-number {
+    position: absolute;
+    top: 20px;
+    right: 32px;
+    font-size: 13px;
+    color: var(--text2);
+  }
+
+  h1 {
+    font-size: 52px;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 16px;
+    letter-spacing: -1px;
+  }
+  h1 .accent { color: var(--yellow); }
+  h1 .accent-blue { color: var(--blue); }
+  h1 .accent-green { color: var(--green); }
+
+  h2 {
+    font-size: 36px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 32px;
+    color: #fff;
+  }
+
+  .subtitle {
+    font-size: 22px;
+    color: var(--text2);
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .tag {
+    display: inline-block;
+    background: rgba(59,130,246,0.15);
+    border: 1px solid var(--blue);
+    color: var(--blue);
+    font-size: 16px;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+  }
+  .tag.tag-green {
+    background: rgba(16,185,129,0.15);
+    border-color: var(--green);
+    color: var(--green);
+  }
+  .tag.tag-yellow {
+    background: rgba(245,158,11,0.15);
+    border-color: var(--yellow);
+    color: var(--yellow);
+  }
+  .tag.tag-purple {
+    background: rgba(168,85,247,0.15);
+    border-color: var(--purple);
+    color: var(--purple);
+  }
+
+  .title-icon {
+    font-size: 80px;
+    margin-bottom: 24px;
+  }
+  .title-meta {
+    margin-top: 32px;
+    font-size: 18px;
+    color: var(--text2);
+    text-align: center;
+  }
+
+  /* WORKSHOP CARD */
+  .workshop-container {
+    max-width: 800px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .workshop-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .workshop-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+  }
+  .workshop-card.w-blue::before { background: var(--blue); }
+  .workshop-card.w-green::before { background: var(--green); }
+  .workshop-card.w-yellow::before { background: var(--yellow); }
+  .workshop-card.w-purple::before { background: var(--purple); }
+
+  .workshop-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .workshop-num {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text2);
+  }
+  .workshop-title {
+    font-size: 24px;
+    font-weight: 800;
+    color: #fff;
+  }
+  .workshop-time {
+    font-size: 12px;
+    color: var(--text2);
+    background: rgba(255,255,255,0.05);
+    padding: 2px 10px;
+    border-radius: 10px;
+    margin-left: auto;
+  }
+
+  .workshop-desc {
+    font-size: 17px;
+    color: var(--text2);
+    margin-bottom: 16px;
+    line-height: 1.8;
+  }
+
+  .prompt-box {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 24px;
+    font-size: 19px;
+    line-height: 1.8;
+    margin-bottom: 12px;
+  }
+  .prompt-box .role { color: var(--green); font-weight: 600; }
+  .prompt-box .specific { color: var(--blue); font-weight: 600; }
+  .prompt-box .condition { color: var(--purple); font-weight: 600; }
+
+  .prompt-label {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--yellow);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+
+  .workshop-tip {
+    font-size: 16px;
+    color: var(--green);
+    margin-top: 8px;
+    padding: 8px 12px;
+    background: rgba(16,185,129,0.08);
+    border-radius: 8px;
+  }
+
+  /* FLOW */
+  .flow-list {
+    max-width: 700px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .flow-item {
+    display: flex;
+    gap: 20px;
+    padding: 20px 0;
+  }
+  .flow-line {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 48px;
+    flex-shrink: 0;
+  }
+  .flow-dot {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+  .flow-connector {
+    flex: 1;
+    width: 2px;
+    background: var(--border);
+    margin-top: 8px;
+  }
+  .flow-body { flex: 1; padding-top: 8px; }
+  .flow-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+  .flow-desc {
+    font-size: 17px;
+    color: var(--text2);
+  }
+
+  /* REVIEW BOX */
+  .review-box {
+    max-width: 800px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .review-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+  }
+  .review-icon { font-size: 40px; margin-bottom: 8px; }
+  .review-label {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+  .review-hint {
+    font-size: 15px;
+    color: var(--text2);
+  }
+
+  /* MESSAGE */
+  .message-box {
+    max-width: 700px;
+    background: var(--card);
+    border: 2px solid var(--yellow);
+    border-radius: 16px;
+    padding: 48px;
+    text-align: center;
+    box-shadow: 0 0 40px rgba(245,158,11,0.1);
+  }
+  .message-box .icon { font-size: 48px; margin-bottom: 20px; }
+  .message-box .main-msg {
+    font-size: 36px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 16px;
+    line-height: 1.4;
+  }
+  .message-box .sub-msg {
+    font-size: 20px;
+    color: var(--text2);
+    line-height: 1.8;
+  }
+  .message-box .sub-msg strong {
+    color: var(--yellow);
+  }
+
+  .action-list {
+    max-width: 600px;
+    width: 100%;
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .action-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 18px;
+  }
+  .action-check {
+    color: var(--green);
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  /* NAV */
+  .nav {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    gap: 8px;
+    z-index: 100;
+  }
+  .nav button {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .nav button:hover { background: var(--border); }
+
+  /* MOBILE */
+  @media screen and (max-width: 768px) {
+    .slide { padding: 32px 16px; min-height: auto; padding-top: 60px; padding-bottom: 60px; }
+    h1 { font-size: 28px; }
+    h2 { font-size: 22px; }
+    .review-box { grid-template-columns: 1fr; }
+    .message-box { padding: 32px 20px; }
+    .message-box .main-msg { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1: TITLE -->
+<div class="slide">
+  <span class="slide-number">1 / 6</span>
+  <div class="title-icon">🤝</div>
+  <h1>一緒に<span class="accent">やってみよう</span></h1>
+  <div class="subtitle">AIレクチャー 第3回 — ハンズオン</div>
+  <div class="title-meta">
+    2026年4月3日<br>
+    磯貝
+  </div>
+</div>
+
+<!-- SLIDE 2: TODAY'S FLOW -->
+<div class="slide">
+  <span class="slide-number">2 / 6</span>
+  <span class="tag">Today's Plan</span>
+  <h2>今日の<span style="color: var(--green);">流れ</span></h2>
+
+  <div class="flow-list">
+    <div class="flow-item">
+      <div class="flow-line">
+        <div class="flow-dot" style="background: rgba(59,130,246,0.2); color: var(--blue);">1</div>
+        <div class="flow-connector"></div>
+      </div>
+      <div class="flow-body">
+        <div class="flow-title">アカウント確認（3分）</div>
+        <div class="flow-desc">ChatGPTのアカウントは作れましたか？<br>まだの方はその場でサポートします</div>
+      </div>
+    </div>
+
+    <div class="flow-item">
+      <div class="flow-line">
+        <div class="flow-dot" style="background: rgba(16,185,129,0.2); color: var(--green);">2</div>
+        <div class="flow-connector"></div>
+      </div>
+      <div class="flow-body">
+        <div class="flow-title">一緒にやってみる（17分）</div>
+        <div class="flow-desc">磯貝の画面を見ながら、<strong style="color:#fff;">全員が同時に</strong>AIに質問する<br>お題は3つ。前回の3原則を実際に使います</div>
+      </div>
+    </div>
+
+    <div class="flow-item">
+      <div class="flow-line">
+        <div class="flow-dot" style="background: rgba(245,158,11,0.2); color: var(--yellow);">3</div>
+      </div>
+      <div class="flow-body">
+        <div class="flow-title">感想＆宿題（5分）</div>
+        <div class="flow-desc">やってみてどうだったか。今日から業務で使えるイメージはできたか</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 32px; padding: 20px 28px; background: var(--card); border: 2px solid var(--green); border-radius: 12px; max-width: 600px;">
+    <div style="font-size: 22px; color: #fff; text-align: center; font-weight: 700;">
+      今日は<span style="color: var(--green);">見る</span>だけじゃなく<span style="color: var(--yellow);">触る</span>回です
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 3: WORKSHOP 1 - 調べ物 -->
+<div class="slide">
+  <span class="slide-number">3 / 6</span>
+  <span class="tag tag-green">Workshop 1</span>
+  <h2>お題1：<span style="color: var(--green);">調べ物</span></h2>
+
+  <div class="workshop-container">
+    <div class="workshop-card w-green">
+      <div class="prompt-label">プロンプト例</div>
+      <div class="prompt-box">
+        <span class="role">あなたは税理士です。</span><br>
+        <span class="specific">2026年の税制改正で、中小企業の顧問先に影響が大きい項目を3つ</span>、<span class="condition">箇条書きで、それぞれ1行の説明付きで</span>教えてください
+      </div>
+      <div class="workshop-desc">
+        前回学んだ3原則を全部使っています：<br>
+        <span style="color: var(--green);">役割</span> →「税理士です」/
+        <span style="color: var(--blue);">具体的</span> →「中小企業に影響が大きい項目を3つ」/
+        <span style="color: var(--purple);">条件</span> →「箇条書きで、1行の説明付き」
+      </div>
+      <div class="workshop-tip">
+        皆さんも同じプロンプトを入力してみてください。結果を見比べてみましょう！
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 4: WORKSHOP 2 - 要約 -->
+<div class="slide">
+  <span class="slide-number">4 / 6</span>
+  <span class="tag">Workshop 2</span>
+  <h2>お題2：<span style="color: var(--blue);">要約</span></h2>
+
+  <div class="workshop-container">
+    <div class="workshop-card w-blue">
+      <div class="prompt-label">プロンプト例</div>
+      <div class="prompt-box">
+        <span class="role">あなたは会計事務所の職員です。</span><br>
+        <span class="specific">以下の文書を、顧問先の社長に説明するために要約してください。</span><br>
+        <span class="condition">3つのポイントに絞って、専門用語は避けてください。</span><br><br>
+        （ここに文書を貼り付ける）
+      </div>
+      <div class="workshop-desc">
+        税務通信や国税庁の通達など、普段読んでいる文書を貼り付けてみましょう。<br>
+        URLを貼るだけでもOKです。
+      </div>
+      <div class="workshop-tip">
+        ポイント：「顧問先の社長に説明するために」と書くだけで、出力の分かりやすさが大きく変わります
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 5: WORKSHOP 3 - 下書き -->
+<div class="slide">
+  <span class="slide-number">5 / 6</span>
+  <span class="tag tag-yellow">Workshop 3</span>
+  <h2>お題3：<span style="color: var(--yellow);">下書き</span></h2>
+
+  <div class="workshop-container">
+    <div class="workshop-card w-yellow">
+      <div class="prompt-label">プロンプト例</div>
+      <div class="prompt-box">
+        <span class="role">あなたは会計事務所の担当者です。</span><br>
+        <span class="specific">3月決算の顧問先に、決算に必要な書類と提出期限を案内するメールを書いてください。</span><br>
+        <span class="condition">丁寧だが簡潔なトーンで、300文字程度で。</span>
+      </div>
+      <div class="workshop-desc">
+        AIが作った下書きを<strong style="color:#fff;">そのまま送らない</strong>のが鉄則。<br>
+        叩き台をベースに、自分の言葉で修正して使いましょう。
+      </div>
+      <div class="workshop-tip">
+        1から書くより圧倒的に速い。修正だけなら1〜2分で完成します
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 6: SUMMARY & HOMEWORK -->
+<div class="slide">
+  <span class="slide-number">6 / 6</span>
+
+  <div class="message-box">
+    <div class="icon">📸</div>
+    <div class="main-msg">
+      今日の<span style="color: var(--yellow);">宿題</span>
+    </div>
+    <div class="sub-msg">
+      今日から次回のレクチャーまでに、<br>
+      <strong>業務でAIを1回使って、スクショをChatworkに投稿</strong><br><br>
+      うまくいっても、いかなくてもOK。<br>
+      皆さんのスクショが<strong>次回の教材</strong>になります。
+    </div>
+  </div>
+
+  <div class="action-list">
+    <div class="action-item">
+      <div class="action-check">&#10003;</div>
+      <div>業務でAIを1回使ってみる（調べ物・要約・下書き 何でもOK）</div>
+    </div>
+    <div class="action-item">
+      <div class="action-check">&#10003;</div>
+      <div>使った結果のスクショをChatworkに投稿する</div>
+    </div>
+    <div class="action-item">
+      <div class="action-check">&#10003;</div>
+      <div>「こんな時にAI使えないかな？」を1つ考えてみる</div>
+    </div>
+  </div>
+
+  <div style="margin-top: 32px; padding: 20px 28px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; max-width: 600px;">
+    <div style="font-size: 17px; color: var(--text2); text-align: center;">
+      前回の復習：プロンプトの3原則<br>
+      <span style="color: var(--green);">役割を与える</span> ・
+      <span style="color: var(--blue);">具体的に伝える</span> ・
+      <span style="color: var(--purple);">条件をつける</span>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav">
+  <button onclick="scrollPrev()">&#9650;</button>
+  <button onclick="scrollNext()">&#9660;</button>
+</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+let current = 0;
+
+function scrollTo(i) {
+  if (i >= 0 && i < slides.length) {
+    current = i;
+    slides[i].scrollIntoView({ behavior: 'smooth' });
+  }
+}
+function scrollNext() { scrollTo(current + 1); }
+function scrollPrev() { scrollTo(current - 1); }
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); scrollNext(); }
+  if (e.key === 'ArrowUp') { e.preventDefault(); scrollPrev(); }
+});
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      current = Array.from(slides).indexOf(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+slides.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
