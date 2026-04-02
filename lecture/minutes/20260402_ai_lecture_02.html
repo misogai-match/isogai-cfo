@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第2回 AIレクチャー 議事録 — 2026/4/2</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --card2: #263347;
+    --border: #334155;
+    --text: #e2e8f0;
+    --text2: #94a3b8;
+    --blue: #3b82f6;
+    --green: #10b981;
+    --yellow: #f59e0b;
+    --purple: #a855f7;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.8;
+  }
+
+  .header {
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    padding: 32px;
+  }
+  .header-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .back-link {
+    display: inline-block;
+    color: var(--blue);
+    text-decoration: none;
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+  .back-link:hover { text-decoration: underline; }
+  .header h1 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .header-meta {
+    font-size: 13px;
+    color: var(--text2);
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 32px 24px;
+  }
+
+  .section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--yellow);
+    margin: 20px 0 8px 0;
+  }
+  h3:first-child { margin-top: 0; }
+
+  p { margin-bottom: 12px; font-size: 14px; }
+
+  ul {
+    margin: 8px 0 16px 20px;
+    font-size: 14px;
+  }
+  li { margin-bottom: 6px; }
+
+  .highlight {
+    background: rgba(245,158,11,0.1);
+    border-left: 3px solid var(--yellow);
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+
+  .action-item {
+    background: rgba(59,130,246,0.1);
+    border-left: 3px solid var(--blue);
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    margin: 8px 0;
+    font-size: 14px;
+  }
+  .action-item .label {
+    font-weight: 700;
+    color: var(--blue);
+    font-size: 12px;
+    margin-bottom: 4px;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 12px;
+    color: var(--text2);
+    border-top: 1px solid var(--border);
+  }
+
+  @media screen and (max-width: 768px) {
+    .header { padding: 24px 16px; }
+    .header h1 { font-size: 20px; }
+    .main { padding: 20px 12px; }
+    .section { padding: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <a href="../index.html" class="back-link">&larr; ライブラリに戻る</a>
+    <h1>第2回 AIレクチャー 議事録</h1>
+    <div class="header-meta">
+      <span>2026年4月2日（木）09:10 - 09:45</span>
+      <span>定例Mtg for BS &amp; AIレクチャー</span>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- 概要 -->
+  <div class="section">
+    <div class="section-title">概要</div>
+    <p>第2回は「AIを使ってみよう」をテーマに、実践ワーク形式で実施。冒頭のBS定例（問い合わせ・所属変更の確認）の後、参加者のAI使用状況を確認し、非エンジニアによるAI活用事例の紹介、プロンプトの3原則の解説、ChatGPTを使った実演を行った。</p>
+    <p>鈴木先生からの提案で、次回以降は実際の画面を共有しながら事例付きで進めることが決定した。</p>
+  </div>
+
+  <!-- 参加者 -->
+  <div class="section">
+    <div class="section-title">参加者</div>
+    <ul>
+      <li>磯貝政文（CFO / レクチャー担当）</li>
+      <li>鈴木先生（誠和会計）</li>
+      <li>松草さん（ブルーストーン社）</li>
+      <li>好さん（誠和会計）</li>
+      <li>本田さん（誠和会計）</li>
+      <li>優花さん（誠和会計）</li>
+      <li>中井さん（誠和会計）</li>
+    </ul>
+  </div>
+
+  <!-- BS定例パート -->
+  <div class="section">
+    <div class="section-title">BS定例（冒頭5分）</div>
+
+    <h3>問い合わせと所属変更</h3>
+    <ul>
+      <li>原田さんからKOTと楽々精算に関する問い合わせが2件</li>
+      <li>所属部署変更が3件 — 後日確認予定</li>
+      <li>承認ルートは小島さんの指示で変更済みの見込み</li>
+    </ul>
+
+    <h3>健康保険証の取り扱い</h3>
+    <ul>
+      <li>マイナ保険証への移行済み — 従来の保険証は破棄で問題なし</li>
+      <li>資格確認書を発行した場合のみ返却が必要</li>
+    </ul>
+
+    <h3>その他</h3>
+    <ul>
+      <li>磯貝のアダプターを後日返却予定</li>
+      <li>離職票は不要と確認</li>
+    </ul>
+  </div>
+
+  <!-- AIレクチャーパート -->
+  <div class="section">
+    <div class="section-title">AIレクチャー</div>
+
+    <h3>1. 参加者のAI使用状況</h3>
+    <ul>
+      <li>6名中3名（松草さん・中井さん・鈴木先生）は使用経験あり</li>
+      <li>残り3名は業務での使用経験なし</li>
+      <li>AIが普及しているという認識はあるものの、積極的に情報収集しないと触れる機会がないのが一般的な状況</li>
+    </ul>
+
+    <h3>2. 非エンジニアによるAI活用事例</h3>
+    <p>磯貝は自身がエンジニアではないにもかかわらず、AIを活用して資金管理ダッシュボード（HUBRIDE社向け）を作成した事例を画面共有で実演。日繰り表、取引別表示、月別推移、シミュレーション機能など複雑なツールをAIで構築できることを示した。</p>
+    <div class="highlight">
+      <strong>磯貝の見解：</strong>簿記や税理士の試験よりもはるかに簡単に取り組める分野であり、コストパフォーマンスが非常に良い。
+    </div>
+
+    <h3>3. プロンプトの3原則</h3>
+    <div class="highlight">
+      AIから意図する答えを得るための効果的な聞き方
+    </div>
+    <ul>
+      <li><strong>役割を与える</strong> — 例：「あなたは会計の専門家です」</li>
+      <li><strong>具体的に伝える</strong> — 例：「3つのポイントで要約して」</li>
+      <li><strong>条件をつける</strong> — 例：「初心者向けに、箇条書きで」</li>
+    </ul>
+    <p>AIへの指示の仕方は、人間（上司や同僚）への指示と本質的に同じ。AIの使い方が上達すると仕事の進め方や他人への伝え方もうまくなり、マネジメント能力の向上にもつながる。</p>
+
+    <h3>4. 今日からすぐ使える5つのポイント</h3>
+    <ul>
+      <li><strong>要約</strong> — PDFをAIに投げて要約させることで、1から読む手間を省ける</li>
+      <li><strong>下書きの作成</strong> — メールの文面など、叩き台をAIに作らせて修正する</li>
+      <li><strong>調べ物</strong> — 税制改正など、出典付きで正確に調べられる</li>
+      <li><strong>チェック</strong> — 数字の整合性チェック、文章の確認</li>
+      <li><strong>アイデア出し</strong> — AIに先に考えを述べさせて、最終判断は人間が行う</li>
+    </ul>
+
+    <h3>5. ChatGPT実演</h3>
+    <p>磯貝が画面を共有しながらChatGPTでリアルタイム実演を行った。</p>
+    <ul>
+      <li><strong>退職メールの下書き</strong> — プロンプトを入力すると即座にドラフトが生成。そのまま送るのではなく修正を加えるが、1から作るよりはるかに効率的</li>
+      <li><strong>税制改正の調査</strong> — 「今年の税制改正について箇条書きで」と入力。所得税の課税最低限引き上げ、個人事業向け3割特例、住宅ローン控除の延長など主要論点を財務省の出典付きで即座に提示</li>
+    </ul>
+
+    <h3>6. 次回の方向性</h3>
+    <p>鈴木先生から「隣の画面で実際に事例を共有しながら進めると、参加者の理解が深まるのではないか」と提案があり、磯貝も同意。次回は事例付きで進めることが決定した。</p>
+  </div>
+
+  <!-- ネクストアクション -->
+  <div class="section">
+    <div class="section-title">ネクストアクション</div>
+    <div class="action-item">
+      <div class="label">松草さん</div>
+      原田さんからの問い合わせ2件（KOT・楽々精算）の内容確認
+    </div>
+    <div class="action-item">
+      <div class="label">松草さん</div>
+      所属部署変更3件の申請内容を確認
+    </div>
+    <div class="action-item">
+      <div class="label">好さん</div>
+      離職票に関する対応を更新処理
+    </div>
+    <div class="action-item">
+      <div class="label">磯貝</div>
+      アダプターを後日返却
+    </div>
+    <div class="action-item">
+      <div class="label">磯貝</div>
+      第3回レクチャー（4/3）の準備 — 事例付き・画面共有で実演する形式
+    </div>
+    <div class="action-item">
+      <div class="label">全員</div>
+      ChatGPT（無料版）のアカウントを作成し、まず1つAIに質問してみる
+    </div>
+  </div>
+
+  <!-- 録画 -->
+  <div class="section">
+    <div class="section-title">録画</div>
+    <p style="font-size:14px; color:var(--text2);">Google Meet録画あり（Geminiによるメモ・文字起こし付き）</p>
+  </div>
+
+</div>
+
+<div class="footer">
+  AIレクチャー 議事録 — 磯貝政文 | Powered by Claude Code
+</div>
+
+</body>
+</html>
