@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>プロンプト集 — AIアウトプット ライブラリ</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --card2: #263347;
+    --border: #334155;
+    --text: #e2e8f0;
+    --text2: #94a3b8;
+    --blue: #3b82f6;
+    --green: #10b981;
+    --yellow: #f59e0b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.8;
+  }
+  .header {
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    padding: 32px;
+  }
+  .header-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .back-link {
+    display: inline-block;
+    color: var(--blue);
+    text-decoration: none;
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+  .back-link:hover { text-decoration: underline; }
+  .header h1 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .header .count {
+    font-size: 14px;
+    color: var(--text2);
+  }
+  .main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 32px 24px;
+  }
+  .category-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text2);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    padding-left: 4px;
+  }
+  .prompt-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+  .prompt-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .prompt-card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .prompt-card-tag {
+    display: inline-block;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 600;
+  }
+  .tag-research {
+    background: rgba(16,185,129,0.15);
+    border: 1px solid var(--green);
+    color: var(--green);
+  }
+  .tag-summary {
+    background: rgba(59,130,246,0.15);
+    border: 1px solid var(--blue);
+    color: var(--blue);
+  }
+  .tag-draft {
+    background: rgba(245,158,11,0.15);
+    border: 1px solid var(--yellow);
+    color: var(--yellow);
+  }
+  .prompt-box {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 12px;
+    position: relative;
+  }
+  .prompt-box .role {
+    color: var(--green);
+    font-weight: 600;
+  }
+  .prompt-box .specific {
+    color: var(--blue);
+    font-weight: 600;
+  }
+  .prompt-box .condition {
+    color: var(--yellow);
+    font-weight: 600;
+  }
+  .prompt-legend {
+    display: flex;
+    gap: 16px;
+    font-size: 11px;
+    color: var(--text2);
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .prompt-legend span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .legend-dot.role { background: var(--green); }
+  .legend-dot.specific { background: var(--blue); }
+  .legend-dot.condition { background: var(--yellow); }
+  .prompt-note {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.6;
+  }
+  .section-gap { margin-bottom: 40px; }
+  .footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 12px;
+    color: var(--text2);
+    border-top: 1px solid var(--border);
+  }
+  @media screen and (max-width: 768px) {
+    .header { padding: 24px 16px; }
+    .header h1 { font-size: 20px; }
+    .main { padding: 20px 12px; }
+    .prompt-card { padding: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <a href="index.html" class="back-link">&larr; ライブラリに戻る</a>
+    <h1>💡 プロンプト集</h1>
+    <div class="count">3件のプロンプト — すぐにコピーして使えます</div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- 凡例 -->
+  <div class="prompt-legend">
+    <span><span class="legend-dot role"></span> 役割を与える</span>
+    <span><span class="legend-dot specific"></span> 具体的に伝える</span>
+    <span><span class="legend-dot condition"></span> 条件をつける</span>
+  </div>
+
+  <!-- 調べ物 -->
+  <div class="section-gap">
+    <div class="category-label">調べ物</div>
+    <div class="prompt-card">
+      <div class="prompt-card-header">
+        <div class="prompt-card-title">税制改正の影響を調べる</div>
+        <div class="prompt-card-tag tag-research">調べ物</div>
+      </div>
+      <div class="prompt-box">
+        <span class="role">あなたは税理士です。</span><br>
+        <span class="specific">2026年の税制改正で、中小企業の顧問先に影響が大きい項目を3つ、</span><br>
+        <span class="condition">箇条書きで、それぞれ1行の説明付きで教えてください。</span>
+      </div>
+      <div class="prompt-note">
+        第3回レクチャーで使用。鈴木先生がClaudeで実行し、令和8年度改正の3項目を得た。年度や対象を変えれば応用可能。
+      </div>
+    </div>
+  </div>
+
+  <!-- 要約 -->
+  <div class="section-gap">
+    <div class="category-label">要約</div>
+    <div class="prompt-card">
+      <div class="prompt-card-header">
+        <div class="prompt-card-title">顧問先向けに文書を要約する</div>
+        <div class="prompt-card-tag tag-summary">要約</div>
+      </div>
+      <div class="prompt-box">
+        <span class="role">あなたは会計事務所の職員です。</span><br>
+        <span class="specific">以下の文書を、顧問先の社長に説明するために要約してください。</span><br>
+        <span class="condition">3つのポイントに絞って、専門用語は避けてください。</span>
+      </div>
+      <div class="prompt-note">
+        長い通達や法改正の文書を貼り付けて使う。ポイント数や対象読者を変えればアレンジ可能。
+      </div>
+    </div>
+  </div>
+
+  <!-- 下書き -->
+  <div class="section-gap">
+    <div class="category-label">下書き</div>
+    <div class="prompt-card">
+      <div class="prompt-card-header">
+        <div class="prompt-card-title">決算書類の案内メールを作成する</div>
+        <div class="prompt-card-tag tag-draft">下書き</div>
+      </div>
+      <div class="prompt-box">
+        <span class="role">あなたは会計事務所の担当者です。</span><br>
+        <span class="specific">3月決算の顧問先に、決算に必要な書類と提出期限を案内するメールを書いてください。</span><br>
+        <span class="condition">丁寧だが簡潔なトーンで、300文字程度で。</span>
+      </div>
+      <div class="prompt-note">
+        決算月や書類の種類を変えれば汎用的に使える。トーンや文字数の条件を変えてアレンジ可能。
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  AIアウトプット ライブラリ — 磯貝政文 | Powered by Claude Code
+</div>
+
+</body>
+</html>

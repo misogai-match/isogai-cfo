@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIアウトプット ライブラリ</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --card2: #263347;
+    --border: #334155;
+    --text: #e2e8f0;
+    --text2: #94a3b8;
+    --blue: #3b82f6;
+    --green: #10b981;
+    --yellow: #f59e0b;
+    --purple: #a855f7;
+    --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  .header {
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    padding: 32px;
+    text-align: center;
+  }
+  .header-icon { font-size: 48px; margin-bottom: 12px; }
+  .header h1 {
+    font-size: 28px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .header .subtitle {
+    font-size: 14px;
+    color: var(--text2);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  .back-link {
+    display: inline-block;
+    color: var(--blue);
+    text-decoration: none;
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+  .back-link:hover { text-decoration: underline; }
+
+  .main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 32px 24px;
+  }
+
+  .stats {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+  .stat {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    flex: 1;
+    min-width: 120px;
+    text-align: center;
+  }
+  .stat-number {
+    font-size: 28px;
+    font-weight: 800;
+    color: #fff;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: var(--text2);
+    margin-top: 4px;
+  }
+
+  .section-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text2);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    padding-left: 4px;
+  }
+
+  .card-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .card:hover {
+    border-color: var(--blue);
+    background: var(--card2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(59,130,246,0.15);
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+  }
+  .card.accent-yellow::before { background: var(--yellow); }
+  .card.accent-blue::before { background: var(--blue); }
+  .card.accent-green::before { background: var(--green); }
+  .card.accent-purple::before { background: var(--purple); }
+  .card.accent-red::before { background: var(--red); }
+
+  .card-icon {
+    font-size: 32px;
+    flex-shrink: 0;
+    width: 48px;
+    text-align: center;
+  }
+  .card-body { flex: 1; }
+  .card-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+  .card-desc {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.5;
+  }
+  .card-meta {
+    flex-shrink: 0;
+    text-align: right;
+  }
+  .card-count {
+    font-size: 20px;
+    font-weight: 800;
+    color: #fff;
+  }
+  .card-count-label {
+    font-size: 11px;
+    color: var(--text2);
+  }
+  .card-arrow {
+    color: var(--text2);
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .card.coming-soon {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .how-to {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 32px;
+  }
+  .how-to h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+  .how-to p {
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 8px;
+  }
+  .how-to .step {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 12px;
+  }
+  .how-to .step-num {
+    background: var(--blue);
+    color: #fff;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .how-to .step-text {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .how-to .tip {
+    background: rgba(245,158,11,0.1);
+    border-left: 3px solid var(--yellow);
+    padding: 10px 14px;
+    border-radius: 0 8px 8px 0;
+    font-size: 13px;
+    margin-top: 16px;
+    line-height: 1.6;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 12px;
+    color: var(--text2);
+    border-top: 1px solid var(--border);
+  }
+
+  @media screen and (max-width: 768px) {
+    .header { padding: 24px 16px; }
+    .header h1 { font-size: 22px; }
+    .main { padding: 20px 12px; }
+    .card { padding: 16px; gap: 12px; }
+    .card-title { font-size: 15px; }
+    .card-icon { font-size: 28px; width: 40px; }
+    .card-meta { display: none; }
+    .stats { gap: 8px; }
+    .stat { padding: 12px; }
+    .stat-number { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <a href="../index.html" class="back-link">&larr; AIレクチャー ライブラリに戻る</a>
+  <div class="header-icon">🧠</div>
+  <h1>AIアウトプット ライブラリ</h1>
+  <div class="subtitle">チャットワークに投稿されたAI活用の成果をテーマ別に整理。<br>みんなのナレッジが、いつでも使える資産になります。</div>
+</div>
+
+<div class="main">
+
+  <!-- 統計 -->
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-number">3</div>
+      <div class="stat-label">テーマ</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">5</div>
+      <div class="stat-label">ナレッジ</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">4</div>
+      <div class="stat-label">投稿者</div>
+    </div>
+  </div>
+
+  <!-- テーマ一覧 -->
+  <div class="section-label">テーマ別ナレッジ</div>
+  <div class="card-list">
+
+    <a href="social_insurance.html" class="card accent-green">
+      <div class="card-icon">🏥</div>
+      <div class="card-body">
+        <div class="card-title">社会保険</div>
+        <div class="card-desc">資格取得届の必要書類 / 手続きフロー</div>
+      </div>
+      <div class="card-meta">
+        <div class="card-count">1</div>
+        <div class="card-count-label">件</div>
+      </div>
+      <div class="card-arrow">&rarr;</div>
+    </a>
+
+    <a href="tax_reform.html" class="card accent-yellow">
+      <div class="card-icon">📋</div>
+      <div class="card-body">
+        <div class="card-title">税制改正</div>
+        <div class="card-desc">令和8年度改正 / 中小企業への影響</div>
+      </div>
+      <div class="card-meta">
+        <div class="card-count">1</div>
+        <div class="card-count-label">件</div>
+      </div>
+      <div class="card-arrow">&rarr;</div>
+    </a>
+
+    <a href="prompt_examples.html" class="card accent-blue">
+      <div class="card-icon">💡</div>
+      <div class="card-body">
+        <div class="card-title">プロンプト集</div>
+        <div class="card-desc">すぐに使えるプロンプトのテンプレート / 調べ物・要約・下書き</div>
+      </div>
+      <div class="card-meta">
+        <div class="card-count">3</div>
+        <div class="card-count-label">件</div>
+      </div>
+      <div class="card-arrow">&rarr;</div>
+    </a>
+
+  </div>
+
+  <!-- 今後追加予定 -->
+  <div class="section-label">今後追加予定</div>
+  <div class="card-list">
+
+    <div class="card coming-soon accent-purple">
+      <div class="card-icon">📊</div>
+      <div class="card-body">
+        <div class="card-title">決算業務</div>
+        <div class="card-desc">決算準備 / 書類案内 / チェックリスト</div>
+      </div>
+      <div class="card-meta">
+        <div class="card-count">—</div>
+        <div class="card-count-label">準備中</div>
+      </div>
+    </div>
+
+    <div class="card coming-soon accent-red">
+      <div class="card-icon">📬</div>
+      <div class="card-body">
+        <div class="card-title">顧問先対応</div>
+        <div class="card-desc">メール文面 / 説明資料 / Q&A対応</div>
+      </div>
+      <div class="card-meta">
+        <div class="card-count">—</div>
+        <div class="card-count-label">準備中</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 投稿の仕方 -->
+  <div class="how-to">
+    <h2>ライブラリへの追加方法</h2>
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-text">AIで調べ物・要約・下書きなどを作成する</div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-text">結果を<strong>テキスト直貼り</strong>または<strong>スクリーンショット</strong>でチャットワーク「AIアウトプット」に投稿する</div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-text">磯貝がテーマ別に整理してライブラリに追加します</div>
+    </div>
+    <div class="tip">
+      <strong>ポイント：</strong>ChatGPTの共有リンクよりも、テキスト直貼りやスクショの方がライブラリに取り込みやすいです。機密情報は含めないでください。
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  AIアウトプット ライブラリ — 磯貝政文 | Powered by Claude Code
+</div>
+
+</body>
+</html>

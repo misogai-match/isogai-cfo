@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>税制改正 — AIアウトプット ライブラリ</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --card2: #263347;
+    --border: #334155;
+    --text: #e2e8f0;
+    --text2: #94a3b8;
+    --blue: #3b82f6;
+    --green: #10b981;
+    --yellow: #f59e0b;
+    --purple: #a855f7;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.8;
+  }
+  .header {
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    padding: 32px;
+  }
+  .header-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .back-link {
+    display: inline-block;
+    color: var(--blue);
+    text-decoration: none;
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+  .back-link:hover { text-decoration: underline; }
+  .header h1 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .header .count {
+    font-size: 14px;
+    color: var(--text2);
+  }
+  .main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 32px 24px;
+  }
+  .entry {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .entry-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .entry-meta {
+    font-size: 12px;
+    color: var(--text2);
+    text-align: right;
+  }
+  .entry-author {
+    color: var(--green);
+    font-weight: 600;
+  }
+  .entry-tool {
+    display: inline-block;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    background: rgba(168,85,247,0.15);
+    border: 1px solid var(--purple);
+    color: var(--purple);
+    margin-top: 4px;
+  }
+  .entry-body { font-size: 14px; }
+  .entry-body h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--yellow);
+    margin: 20px 0 8px 0;
+  }
+  .entry-body h3:first-child { margin-top: 0; }
+  .entry-body p { margin-bottom: 10px; }
+  .entry-body ul {
+    margin: 8px 0 12px 20px;
+  }
+  .entry-body li { margin-bottom: 4px; }
+  .entry-body .note {
+    background: rgba(245,158,11,0.1);
+    border-left: 3px solid var(--yellow);
+    padding: 10px 14px;
+    border-radius: 0 8px 8px 0;
+    font-size: 13px;
+    margin-top: 12px;
+    line-height: 1.6;
+  }
+  .item-card {
+    background: var(--card2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+  .item-card .item-num {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--yellow);
+    margin-bottom: 4px;
+  }
+  .item-card .item-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .item-card .item-desc {
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 12px;
+    color: var(--text2);
+    border-top: 1px solid var(--border);
+  }
+  @media screen and (max-width: 768px) {
+    .header { padding: 24px 16px; }
+    .header h1 { font-size: 20px; }
+    .main { padding: 20px 12px; }
+    .entry { padding: 16px; }
+    .entry-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <a href="index.html" class="back-link">&larr; ライブラリに戻る</a>
+    <h1>📋 税制改正</h1>
+    <div class="count">1件のナレッジ</div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- Entry 1 -->
+  <div class="entry">
+    <div class="entry-header">
+      <div class="entry-title">令和8年度税制改正 — 中小企業の顧問先に影響が大きい3項目</div>
+      <div class="entry-meta">
+        <div class="entry-author">鈴木先生</div>
+        <div>2026/4/3</div>
+        <div class="entry-tool">Claude</div>
+      </div>
+    </div>
+    <div class="entry-body">
+
+      <div class="item-card">
+        <div class="item-num">① 少額減価償却資産の特例の拡充</div>
+        <div class="item-title">30万円未満 → 40万円未満に引き上げ</div>
+        <div class="item-desc">中小企業者等が取得した資産を一括で経費にできる上限が引き上げられ、高性能PCや機械設備などをより広い範囲で購入年度に全額経費化できる。キャッシュフロー改善につながる。</div>
+      </div>
+
+      <div class="item-card">
+        <div class="item-num">② インボイス制度「2割特例」の終了</div>
+        <div class="item-title">2026年9月30日で終了</div>
+        <div class="item-desc">免税事業者からインボイス登録した事業者向けの「2割特例」が終了する（個人事業主のみ翌2年間「3割特例」あり）。課税事業者に転換した顧問先の消費税納税額が増加する。</div>
+      </div>
+
+      <div class="item-card">
+        <div class="item-num">③ 賃上げ促進税制の「教育訓練費上乗せ措置」の廃止</div>
+        <div class="item-title">全区分で廃止</div>
+        <div class="item-desc">企業規模を問わず、教育訓練費を増加させた場合の税額控除率の上乗せ措置が廃止されるため、この上乗せを活用していた中小企業は税額控除額が減少する。</div>
+      </div>
+
+      <div class="note">
+        <strong>実務上の留意点：</strong>①は節税・設備投資提案の好機、②は特に個人事業主の顧問先への消費税納税額シミュレーションが急務、③は賃上げ計画の見直しと控除試算の更新が必要。
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  AIアウトプット ライブラリ — 磯貝政文 | Powered by Claude Code
+</div>
+
+</body>
+</html>

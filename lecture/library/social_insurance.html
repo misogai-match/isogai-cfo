@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>社会保険 — AIアウトプット ライブラリ</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --card2: #263347;
+    --border: #334155;
+    --text: #e2e8f0;
+    --text2: #94a3b8;
+    --blue: #3b82f6;
+    --green: #10b981;
+    --yellow: #f59e0b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.8;
+  }
+  .header {
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    padding: 32px;
+  }
+  .header-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .back-link {
+    display: inline-block;
+    color: var(--blue);
+    text-decoration: none;
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+  .back-link:hover { text-decoration: underline; }
+  .header h1 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .header .count {
+    font-size: 14px;
+    color: var(--text2);
+  }
+  .main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 32px 24px;
+  }
+  .entry {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .entry-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .entry-meta {
+    font-size: 12px;
+    color: var(--text2);
+    text-align: right;
+  }
+  .entry-author {
+    color: var(--green);
+    font-weight: 600;
+  }
+  .entry-tool {
+    display: inline-block;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    background: rgba(59,130,246,0.15);
+    border: 1px solid var(--blue);
+    color: var(--blue);
+    margin-top: 4px;
+  }
+  .entry-body { font-size: 14px; }
+  .entry-body h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--yellow);
+    margin: 16px 0 8px 0;
+  }
+  .entry-body h3:first-child { margin-top: 0; }
+  .entry-body p { margin-bottom: 10px; }
+  .entry-body ul {
+    margin: 8px 0 12px 20px;
+  }
+  .entry-body li { margin-bottom: 4px; }
+  .entry-body .note {
+    background: rgba(245,158,11,0.1);
+    border-left: 3px solid var(--yellow);
+    padding: 10px 14px;
+    border-radius: 0 8px 8px 0;
+    font-size: 13px;
+    margin-top: 12px;
+  }
+  .footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 12px;
+    color: var(--text2);
+    border-top: 1px solid var(--border);
+  }
+  @media screen and (max-width: 768px) {
+    .header { padding: 24px 16px; }
+    .header h1 { font-size: 20px; }
+    .main { padding: 20px 12px; }
+    .entry { padding: 16px; }
+    .entry-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <a href="index.html" class="back-link">&larr; ライブラリに戻る</a>
+    <h1>🏥 社会保険</h1>
+    <div class="count">1件のナレッジ</div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- Entry 1 -->
+  <div class="entry">
+    <div class="entry-header">
+      <div class="entry-title">社会保険（健康保険・厚生年金）資格取得届の必要書類</div>
+      <div class="entry-meta">
+        <div class="entry-author">大越さん</div>
+        <div>2026/4/3</div>
+        <div class="entry-tool">ChatGPT</div>
+      </div>
+    </div>
+    <div class="entry-body">
+      <h3>必須書類</h3>
+      <p><strong>1. 資格取得届</strong></p>
+      <ul>
+        <li>「健康保険・厚生年金保険 被保険者資格取得届」</li>
+        <li>提出先：日本年金機構</li>
+        <li>提出期限：入社日から <strong>5日以内</strong></li>
+      </ul>
+
+      <h3>添付が必要になる主な書類</h3>
+      <p><strong>2. マイナンバー関連</strong>（いずれか1つ）</p>
+      <ul>
+        <li>個人番号（マイナンバー）</li>
+        <li>または基礎年金番号</li>
+      </ul>
+
+      <p><strong>3. 本人確認書類</strong>（場合による）</p>
+      <ul>
+        <li>運転免許証、マイナンバーカード など</li>
+        <li>会社が確認済みなら提出不要なことも多い</li>
+      </ul>
+
+      <p><strong>4. 扶養がいる場合</strong></p>
+      <ul>
+        <li>「被扶養者（異動）届」とあわせて提出</li>
+        <li>続柄確認書類（戸籍謄本など）</li>
+        <li>収入証明（課税証明書・給与明細など）</li>
+        <li>同居確認書類（住民票など）</li>
+      </ul>
+
+      <p><strong>5. 報酬に関する資料</strong>（場合による）</p>
+      <ul>
+        <li>雇用契約書</li>
+        <li>労働条件通知書</li>
+      </ul>
+
+      <div class="note">
+        <strong>実務ポイント：</strong>通常はマイナンバーまたは基礎年金番号のどちらかでOK。扶養がない場合は資格取得届のみで完了するケースが多い。
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  AIアウトプット ライブラリ — 磯貝政文 | Powered by Claude Code
+</div>
+
+</body>
+</html>
