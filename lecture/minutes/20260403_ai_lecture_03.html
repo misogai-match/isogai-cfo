@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第3回 AIレクチャー 議事録 — 2026/4/3</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --card2: #263347;
+    --border: #334155;
+    --text: #e2e8f0;
+    --text2: #94a3b8;
+    --blue: #3b82f6;
+    --green: #10b981;
+    --yellow: #f59e0b;
+    --purple: #a855f7;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.8;
+  }
+
+  .header {
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    padding: 32px;
+  }
+  .header-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .back-link {
+    display: inline-block;
+    color: var(--blue);
+    text-decoration: none;
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+  .back-link:hover { text-decoration: underline; }
+  .header h1 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .header-meta {
+    font-size: 13px;
+    color: var(--text2);
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 32px 24px;
+  }
+
+  .section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--yellow);
+    margin: 20px 0 8px 0;
+  }
+  h3:first-child { margin-top: 0; }
+
+  p { margin-bottom: 12px; font-size: 14px; }
+
+  ul {
+    margin: 8px 0 16px 20px;
+    font-size: 14px;
+  }
+  li { margin-bottom: 6px; }
+
+  .highlight {
+    background: rgba(245,158,11,0.1);
+    border-left: 3px solid var(--yellow);
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+
+  .action-item {
+    background: rgba(59,130,246,0.1);
+    border-left: 3px solid var(--blue);
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    margin: 8px 0;
+    font-size: 14px;
+  }
+  .action-item .label {
+    font-weight: 700;
+    color: var(--blue);
+    font-size: 12px;
+    margin-bottom: 4px;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 12px;
+    color: var(--text2);
+    border-top: 1px solid var(--border);
+  }
+
+  @media screen and (max-width: 768px) {
+    .header { padding: 24px 16px; }
+    .header h1 { font-size: 20px; }
+    .main { padding: 20px 12px; }
+    .section { padding: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <a href="../index.html" class="back-link">&larr; ライブラリに戻る</a>
+    <h1>第3回 AIレクチャー 議事録</h1>
+    <div class="header-meta">
+      <span>2026年4月3日（金）09:15 - 09:45</span>
+      <span>定例Mtg for BS &amp; AIレクチャー</span>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- 概要 -->
+  <div class="section">
+    <div class="section-title">概要</div>
+    <p>第3回は「一緒にやってみよう」をテーマに、全員参加のハンズオン形式で実施。前回学んだプロンプトの3原則（役割・具体的に・条件）を実際に使い、調べ物・要約・下書き作成の3つの演習を行った。</p>
+    <p>演習結果はチャットワークに投稿し、今後「ライブラリ」としてテーマ別に蓄積していく方針が決まった。全10名参加。</p>
+  </div>
+
+  <!-- 参加者 -->
+  <div class="section">
+    <div class="section-title">参加者（10名）</div>
+    <ul>
+      <li>磯貝政文（CFO / レクチャー担当）</li>
+      <li>鈴木先生（誠和会計）※途中退席（別会議のため）</li>
+      <li>松草さん（ブルーストーン社）</li>
+      <li>好さん（誠和会計）</li>
+      <li>本田さん（誠和会計）</li>
+      <li>清川さん（誠和会計）</li>
+      <li>他4名</li>
+    </ul>
+  </div>
+
+  <!-- AIレクチャーパート -->
+  <div class="section">
+    <div class="section-title">AIレクチャー（ハンズオン）</div>
+
+    <h3>0. アカウント確認</h3>
+    <p>前回の宿題だったChatGPT（チャッピー）のアカウント作成状況を確認。全員が作成済みで、すでに試用している人もいた。有料・無料問わず、本日はチャッピーを使って演習を進めることに。</p>
+
+    <h3>1. 演習1：3原則を使って調べ物</h3>
+    <p>前回学んだ3つの要素（役割を与える・具体的に伝える・条件をつける）をすべて使い、実際に調べ物をする演習。結果はチャットワークに貼り付ける形で共有した。</p>
+    <div class="highlight">
+      <strong>お題：</strong>レクチャー資料に記載のプロンプト例を使い、自分の業務に関連するテーマで調べ物を実施。結果をチャットワークに投稿。
+    </div>
+
+    <h3>2. ライブラリ構想の提案</h3>
+    <p>磯貝から、チャットワークに投稿されたAIの出力をClaudeで読み取り、テーマ別（社会保険関連・所得税関連など）にインデックス化した「ライブラリ」にまとめる構想を提案。チャットでは情報が流れてしまう問題を解決し、全員のナレッジを蓄積・再利用できるようにする狙い。</p>
+    <div class="highlight">
+      <strong>ポイント：</strong>みんなが貯めてくれたナレッジをライブラリに置いておくと、いつでも使える資産になる。
+    </div>
+
+    <h3>3. 演習2：文章の要約</h3>
+    <p>演習1で得られた長い回答文をさらに要約する演習。AIに「もっと短くまとめて」「箇条書きにして」と指示することで、そのまま説明資料として使えるレベルに加工できることを体験した。</p>
+
+    <h3>4. 演習3：下書き作成</h3>
+    <p>AIに業務の下書きを作成させ、修正を繰り返すことでAIが個人の文体や癖を学習していく仕組みを紹介。磯貝自身も「ほぼすべての下書きをAIに作らせている」と実例を交えて説明した。</p>
+    <div class="highlight">
+      <strong>磯貝の実践例：</strong>一旦下書きを作らせて修正する、を繰り返すと、AIが書き方の癖を覚えてくれる。最終的には自分が書いたかのような文章がドラフトとして出てくるようになる。
+    </div>
+
+    <h3>5. 感想・質問</h3>
+    <p>好さんから「宿題を何に活用するか検討中」との報告。全体として、まだ追いつくのに精一杯という反応だが、全員が演習を完了できた。</p>
+    <p>磯貝から「こちらでも活用事例のヒントを出すので、皆さんも考えてみてください」とフォロー。</p>
+  </div>
+
+  <!-- ネクストアクション / 宿題 -->
+  <div class="section">
+    <div class="section-title">宿題（次回までに）</div>
+    <div class="action-item">
+      <div class="label">全員</div>
+      業務でAIを使ってみた結果をスクリーンショットなどでチャットワークに投稿する（機密情報はNG）
+    </div>
+    <div class="action-item">
+      <div class="label">全員</div>
+      「こんな業務にAIが使えないか？」というアイデアを考えてチャットワークに投稿する
+    </div>
+    <div class="action-item">
+      <div class="label">磯貝</div>
+      参加者からの投稿内容を元に、第4回セッションのテーマと叩き台を作成する
+    </div>
+    <div class="action-item">
+      <div class="label">磯貝</div>
+      AIアウトプットのライブラリ化（チャットワーク投稿をテーマ別に整理）の仕組みを構築する
+    </div>
+  </div>
+
+  <!-- 運用改善 -->
+  <div class="section">
+    <div class="section-title">運用改善</div>
+    <p>ミーティングリンクについて、毎回手動で共有するのではなく、自動的にリンクが生成・共有される方式に変更することで合意。カレンダーからの参加だけでなく、チャットへの自動配信も検討する。</p>
+  </div>
+
+  <!-- 録画 -->
+  <div class="section">
+    <div class="section-title">録画</div>
+    <a href="https://drive.google.com/file/d/1jGskLEF7Ta11tgwBU0nZV3uAyccv8Sb5/view?usp=sharing" target="_blank" style="display:inline-block; background:var(--blue); color:#fff; padding:10px 20px; border-radius:8px; text-decoration:none; font-size:14px; font-weight:600;">録画を再生する（Google Drive）</a>
+    <p style="font-size:13px; color:var(--text2); margin-top:8px;">Google Meet録画 / Geminiによるメモ・文字起こし付き</p>
+  </div>
+
+</div>
+
+<div class="footer">
+  AIレクチャー 議事録 — 磯貝政文 | Powered by Claude Code
+</div>
+
+</body>
+</html>
